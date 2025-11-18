@@ -260,6 +260,19 @@
   .image{ position:relative; }
   .image a{ display:inline-block; max-width:100%; }
   .image-border-none a img{ border-width:0 !important; }
+  .image-fill-height{
+    aspect-ratio:auto;
+    height:100%;
+    display:flex;
+    align-items: center;
+  }
+
+  .image-fill-height img{
+    /* margin:auto; */
+    width:auto;
+    height:100%;
+    object-fit:cover;
+  }
   
   /* Gallery */
   .gallery-grid {
