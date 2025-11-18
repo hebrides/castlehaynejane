@@ -49,7 +49,7 @@
   img,svg,video{ display:block; max-width:100%; height:auto; }
   a{ color:var(--link); text-decoration:none; transition: color .24s ease-in-out; }
   a:hover{ color:var(--link-hover); text-decoration:none; }
-  ul,li,h2, h4,div.paragraph,img{ border:0; margin:0; padding:0; }
+  ul,li,h2, h3, div.paragraph,img{ border:0; margin:0; padding:0; }
   
   .container{ margin:0 auto; max-width:var(--maxw); padding:2rem var(--pad); }
   
@@ -231,6 +231,34 @@
   .bg-wedding{ background: url('../media/bg/wedding.jpg') 50% 50% / cover no-repeat; }
   .bg-footer{ background: url('../media/bg/footer.jpg') 50% 50% / cover no-repeat; }
   
+  /* Buttons */
+  /* .button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:0.85rem 1.75rem;
+    border:2px solid #333;
+    background:#333;
+    color:#fff;
+    font:600 0.95rem/1 var(--font-nav);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    text-decoration:none;
+    transition:background .25s ease, color .25s ease, border-color .25s ease;
+  }
+  .button:hover{
+    background:#fff;
+    color:#333;
+  }
+  .button-outline{
+    background:#fff;
+    color:#333;
+  }
+  .button-outline:hover{
+    background:#333;
+    color:#fff;
+  } */
+  
   /* Responsive divider bg image height */
   .bg-resp { height: 344px; }
   
@@ -311,6 +339,47 @@
     width:auto;
     height:100%;
     object-fit:cover;
+  }
+
+  /* Support tiers */
+  .support-option-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    /* gap:1.5rem; */
+    margin:1.25rem 0 0.75rem;
+  }
+  .support-option-header > div{
+    flex:1;
+  }
+  p.support-price{
+    margin: 0.7rem 0 0;
+    font:400 1.1rem/1.3 var(--font-body);
+  }
+  .support-option-button{
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:0.85rem 1.75rem;
+    border:2px solid #333;
+    background:#333;
+    color:#fff;
+    font:600 0.95rem/1 var(--font-nav);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    text-decoration:none;
+    transition:background .25s ease, color .25s ease, border-color .25s ease;
+    margin-top:0.2rem;
+  }
+
+  .button-outline{
+    background:#fff;
+    color:#333;
+  }
+  .button-outline:hover{
+    background:#333;
+    color:#fff;
   }
   
   /* Gallery */
@@ -441,6 +510,15 @@ form .field-group p {
     .gallery-grid{ grid-template-columns:repeat(2,1fr); }
     .site-logo {font-size: 1.5em; }
     .bg-resp {height: 244px;}
+    .support-option-header{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:0.75rem;
+    }
+    .support-option-button{
+      width:100%;
+      text-align:center;
+    }
   }
   
   /* ===== XS ≤479px ===== */
