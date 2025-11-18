@@ -11,6 +11,7 @@
     --flow: clamp(1.5rem, 3vw, 2.25rem);
   
     --bg-page: #f2f2f2;
+    --beige: #ede3e3;
     --text: #333;
     --muted: #bbb;
     --link: #888;
@@ -48,7 +49,7 @@
   img,svg,video{ display:block; max-width:100%; height:auto; }
   a{ color:var(--link); text-decoration:none; transition: color .24s ease-in-out; }
   a:hover{ color:var(--link-hover); text-decoration:none; }
-  ul,li,h2,div.paragraph,img{ border:0; margin:0; padding:0; }
+  ul,li,h2, h4,div.paragraph,img{ border:0; margin:0; padding:0; }
   
   .container{ margin:0 auto; max-width:var(--maxw); padding:2rem var(--pad); }
   
@@ -114,6 +115,11 @@
     color:#333;
     font: italic 1.85em/1 var(--font-logo);
     display:inline-block;
+  }
+
+  /* Background Colors */
+  .bg-beige {
+    background: var(--beige);
   }
   
   .hamburger{
@@ -194,6 +200,12 @@
       display:flex; align-items:center; 
     background-color: gray;
   }
+
+  .hero.hero-events {
+    height: 520px;
+  }
+
+
   .hero .container{ padding-top:0; } 
   .hero .content-title{
     font: 400 clamp(2rem, 9vw, 120px)/1 var(--font-hero);
@@ -225,6 +237,29 @@
   /* Hero text on dark backgrounds */
   .hero--on-dark .content-title,
   .hero--on-dark .kicker{ color:#fff; }
+
+  /* Window Background */
+
+  .bg-image-window {
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bg-wedding-track {
+    position: absolute;
+    inset: 0;
+    background-image: url('../media/bg/wedding.jpg');
+    background-size: cover;
+    background-position: center;
+    will-change: scroll-position;
+  }
+
+  /* Wedding Background Parallax */
+
+  .bg-image-window.parallax .bg-wedding-track {
+  background-attachment: fixed;
+}
   
   
   /* Sections / Prose */
@@ -236,6 +271,10 @@
     align-items:start;
     column-gap:3rem;
     row-gap:var(--gap);
+  }
+  section .container.prose.sm-col-gap {
+    column-gap: 1.25rem;
+    row-gap: 1.25rem;
   }
   section .container.prose > div {
     display: flex;
@@ -257,6 +296,7 @@
     aspect-ratio: 4 / 3;
     overflow: hidden;
   }
+   .no-margin figure {margin: 0;}
   .image{ position:relative; }
   .image a{ display:inline-block; max-width:100%; }
   .image-border-none a img{ border-width:0 !important; }
@@ -268,7 +308,6 @@
   }
 
   .image-fill-height img{
-    /* margin:auto; */
     width:auto;
     height:100%;
     object-fit:cover;
@@ -297,6 +336,19 @@
   .site-footer a{ color:inherit; text-decoration:none; }
   .site-footer a:hover{ text-decoration:underline; }
   
+/* Generic Form Field Group */
+
+form .field-group {
+  display: flex;
+  flex-direction: row; /* multiple paragraphs inside each div */
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+form .field-group p {
+  display: flex;
+  flex-direction: column;
+}
 
 /* Contact Form Styles */
 .contact-form input,
@@ -327,6 +379,44 @@
 .contact-form button:hover {
   background: var(--link-hover);
 }
+
+/* Event From Styles */
+
+.events-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.events-form input,
+.events-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--muted);
+  border-radius: 4px;
+  font: 400 16px/1.4 var(--font-body);
+  margin-top: 6px;
+}
+
+.events-form textarea {
+  resize: vertical;
+}
+
+.events-form button {
+  padding: 10px 20px;
+  background: #333;
+  color: #fff;
+  font: 500 16px/1 var(--font-nav);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .3s ease-in-out;
+}
+
+.events-form button:hover {
+  background: var(--link-hover);
+}
+
 
 
 
