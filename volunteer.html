@@ -63,21 +63,90 @@
       <h3 class="kicker">Join Us in Growing Something Special</h3>
     </div>
   </section>
-  <section>
+  <!-- TODO: refactor the task-menu section that way we can programatically inject the tasks using js.
+  create a file taskManagement.js same level as custom.js.
+  in taskManagement.js we can keep the data in an object[] format where each should contain the task header (I. Remodel Tasks) then each task header has task subcategories such as (Kitchen) and then each subcategory has its task list where each task object is made of the task string and checked boolean.
+  each subcategory should have a progress bar counting how many tasks have been checked
+  all the styling have already been moved to main.css, do not change any styling
+
+  -->
+  <section class="task-menu">
     <div class="container">
-        <h2>I. Remodel Tasks</h2>
-        <h3>Kitchen</h3>
-        <ul>
-            <li>Install New Kitchen Sink</li>
-            <li>Kitchen Counters</li>
-            <li>Stove Hood Vent</li>
-            <li>Fix Drawer Kitchen</li>
-            <li>New Hardware / Hinges for All Cabinets</li>
-            <li>Kitchen Sink Faucent</li>
-            <li>Fix Ugly Trim</li>
-            <li>Fix Cabinet Kitchen / Laundry</li>
-    
-        </ul>
+      <div class="task-menu__header">
+        <div>
+          <h2>I. Remodel Tasks</h2>
+          <h3>Kitchen</h3>
+          <p class="task-menu__summary">
+            Tracking the punch list so volunteers can quickly see what still needs attention.
+          </p>
+        </div>
+        <div
+          class="task-menu__progress"
+          role="group"
+          aria-label="Kitchen remodel progress"
+        >
+          <p class="task-menu__progress-count">3 of 8 complete</p>
+          <div
+            class="task-menu__progress-bar"
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax="8"
+            aria-valuenow="3"
+          >
+            <span style="width:37.5%"></span>
+          </div>
+        </div>
+      </div>
+      <ul class="task-list" role="list">
+        <li class="task">
+          <label>
+            <input type="checkbox" disabled />
+            <span>Install New Kitchen Sink</span>
+          </label>
+        </li>
+        <li class="task task--done">
+          <label>
+            <input type="checkbox" checked disabled />
+            <span>Kitchen Counters</span>
+          </label>
+        </li>
+        <li class="task">
+          <label>
+            <input type="checkbox" disabled />
+            <span>Stove Hood Vent</span>
+          </label>
+        </li>
+        <li class="task">
+          <label>
+            <input type="checkbox" disabled />
+            <span>Fix Drawer Kitchen</span>
+          </label>
+        </li>
+        <li class="task">
+          <label>
+            <input type="checkbox" disabled />
+            <span>New Hardware / Hinges for All Cabinets</span>
+          </label>
+        </li>
+        <li class="task">
+          <label>
+            <input type="checkbox" disabled />
+            <span>Kitchen Sink Faucet</span>
+          </label>
+        </li>
+        <li class="task">
+          <label>
+            <input type="checkbox" disabled />
+            <span>Fix Ugly Trim</span>
+          </label>
+        </li>
+        <li class="task">
+          <label>
+            <input type="checkbox" disabled />
+            <span>Fix Cabinet Kitchen / Laundry</span>
+          </label>
+        </li>
+      </ul>
     </div>
   </section>
 
