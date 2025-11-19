@@ -231,34 +231,6 @@
   .bg-wedding{ background: url('../media/bg/wedding.jpg') 50% 50% / cover no-repeat; }
   .bg-footer{ background: url('../media/bg/footer.jpg') 50% 50% / cover no-repeat; }
   
-  /* Buttons */
-  /* .button{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:0.85rem 1.75rem;
-    border:2px solid #333;
-    background:#333;
-    color:#fff;
-    font:600 0.95rem/1 var(--font-nav);
-    text-transform:uppercase;
-    letter-spacing:0.08em;
-    text-decoration:none;
-    transition:background .25s ease, color .25s ease, border-color .25s ease;
-  }
-  .button:hover{
-    background:#fff;
-    color:#333;
-  }
-  .button-outline{
-    background:#fff;
-    color:#333;
-  }
-  .button-outline:hover{
-    background:#333;
-    color:#fff;
-  } */
-  
   /* Responsive divider bg image height */
   .bg-resp { height: 344px; }
   
