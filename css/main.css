@@ -596,6 +596,21 @@ form .field-group p {
     display:none;
   }
 
+  .task-menu__section-overview{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem;
+    margin-bottom:2rem;
+    padding-bottom:1rem;
+    border-bottom:1px solid #ddd;
+  }
+
+  .task-menu__section-overview h2{
+    margin:0;
+  }
+
   /* Utilities */
   .hidden{ display:none !important; }
   .center{ text-align:center; }

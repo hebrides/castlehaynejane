@@ -283,7 +283,7 @@ const createTaskList = (tasks) => {
   return taskList;
 };
 
-const createCategoryBlock = (sectionTitle, category, shouldIncludeSectionTitle) => {
+const createCategoryBlock = (category) => {
   const fragment = document.createDocumentFragment();
   const completed = category.tasks.filter((task) => task.checked).length;
   const total = category.tasks.length;
@@ -292,11 +292,6 @@ const createCategoryBlock = (sectionTitle, category, shouldIncludeSectionTitle) 
   header.className = "task-menu__header";
 
   const headerText = document.createElement("div");
-  if (shouldIncludeSectionTitle) {
-    const sectionHeading = document.createElement("h2");
-    sectionHeading.textContent = sectionTitle;
-    headerText.append(sectionHeading);
-  }
   const categoryName = document.createElement("h3");
   categoryName.textContent = category.name;
   const summary = document.createElement("p");
@@ -313,6 +308,28 @@ const createCategoryBlock = (sectionTitle, category, shouldIncludeSectionTitle) 
   return fragment;
 };
 
+const createSectionOverview = (section) => {
+  const totalTasks = section.categories.reduce(
+    (count, category) => count + category.tasks.length,
+    0
+  );
+  const totalCompleted = section.categories.reduce(
+    (count, category) => count + category.tasks.filter((task) => task.checked).length,
+    0
+  );
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "task-menu__section-overview";
+
+  const title = document.createElement("h2");
+  title.textContent = section.title;
+
+  const progress = createProgressGroup(section.title, totalCompleted, totalTasks);
+  wrapper.append(title, progress);
+
+  return wrapper;
+};
+
 const createSectionPanel = (section, sectionIndex, tabId) => {
   const panel = document.createElement("div");
   panel.className = "task-tabs__panel";
@@ -323,15 +340,12 @@ const createSectionPanel = (section, sectionIndex, tabId) => {
   panel.setAttribute("aria-hidden", "true");
 
   const fragment = document.createDocumentFragment();
-  let sectionTitleAdded = false;
+  const sectionOverview = createSectionOverview(section);
+  fragment.append(sectionOverview);
+
   section.categories.forEach((category) => {
-    const block = createCategoryBlock(
-      section.title,
-      category,
-      !sectionTitleAdded
-    );
+    const block = createCategoryBlock(category);
     fragment.append(block);
-    sectionTitleAdded = true;
   });
 
   panel.append(fragment);
