@@ -174,95 +174,225 @@ const taskSections = [
       },
     ],
   },
+  {
+    title: "II. Furnishing Tasks",
+    categories: [
+      {
+        name: "Furnishing Tasks",
+        summary: "Interior items and decor to finish the home",
+        tasks: [
+          { description: "Clean and check Fans", checked: false },
+          { description: "American Flag", checked: false },
+          { description: "washer", checked: true },
+          { description: "dryer", checked: false },
+          { description: "stove", checked: false },
+          { description: "stove microwave vent", checked: false },
+          { description: "fridge", checked: false },
+          { description: "dishwasher", checked: true },
+          { description: "Beds", checked: false },
+          { description: "TVs", checked: false },
+          { description: "Linen / Pillows", checked: false },
+          { description: "Artwork", checked: false },
+          { description: "Utensils", checked: false },
+          {
+            description: "Furnish Bathrooms, new shower curtain / update some fixtures",
+            checked: false,
+          },
+          {
+            description: "Exterior furnishings / Outdoor tables and chairs / Umbrellas",
+            checked: false,
+          },
+          { description: "Cafe Lights", checked: false },
+        ],
+      },
+    ]
+  },
+  {
+    title: "III. Landscaping / Exterior Work",
+    categories: [
+      {
+        name: "Landscaping / Exterior Work",
+        summary: "Grounds cleanup and exterior projects",
+        tasks: [
+          { description: "Clean Yard", checked: false },
+          { description: "Landscaping", checked: false },
+          { description: "Walkways", checked: false },
+          { description: "Covered Car Port", checked: false },
+          { description: "Chicken Coop", checked: true },
+          { description: "Chicken Coop Fence", checked: false },
+          { description: "Bush Hog Rear", checked: true },
+          { description: "Take down Tree Limbs over house", checked: false },
+          { description: "Take down .2 acre trees", checked: false },
+          { description: "Plant Orchards / Farm Row", checked: false },
+        ],
+      },
+    ]
+  }
 ];
 
-const renderTaskMenu = (sections) => {
-  const root = document.querySelector("[data-task-menu-root]");
+const createProgressGroup = (categoryName, completed, total) => {
+  const percentage = total ? (completed / total) * 100 : 0;
+  const progressGroup = document.createElement("div");
+  progressGroup.className = "task-menu__progress";
+  progressGroup.setAttribute("aria-label", `${categoryName} progress`);
+  progressGroup.setAttribute("role", "group");
 
-  if (!root) return;
+  const progressCopy = document.createElement("p");
+  progressCopy.className = "task-menu__progress-count";
+  progressCopy.textContent = `${completed} of ${total} complete`;
 
-  root.innerHTML = "";
-  const fragment = document.createDocumentFragment();
+  const progressBar = document.createElement("div");
+  progressBar.className = "task-menu__progress-bar";
+  progressBar.setAttribute("role", "progressbar");
+  progressBar.setAttribute("aria-valuemin", "0");
+  progressBar.setAttribute("aria-valuemax", String(total));
+  progressBar.setAttribute("aria-valuenow", String(completed));
 
-  sections.forEach((section) => {
-    let sectionTitleAdded = false;
-    section.categories.forEach((category) => {
-      const completed = category.tasks.filter((task) => task.checked).length;
-      const total = category.tasks.length;
-      const percentage = total ? (completed / total) * 100 : 0;
+  const progressFill = document.createElement("span");
+  progressFill.style.width = `${percentage}%`;
+  progressBar.append(progressFill);
 
-      const header = document.createElement("div");
-      header.className = "task-menu__header";
+  progressGroup.append(progressCopy, progressBar);
+  return progressGroup;
+};
 
-      const headerText = document.createElement("div");
-      if (!sectionTitleAdded) {
-        const sectionTitle = document.createElement("h2");
-        sectionTitle.textContent = section.title;
-        headerText.append(sectionTitle);
-        sectionTitleAdded = true;
-      }
-      const categoryName = document.createElement("h3");
-      categoryName.textContent = category.name;
-      const summary = document.createElement("p");
-      summary.className = "task-menu__summary";
-      summary.textContent = category.summary;
+const createTaskList = (tasks) => {
+  const taskList = document.createElement("ul");
+  taskList.className = "task-list";
+  taskList.setAttribute("role", "list");
 
-      headerText.append(categoryName, summary);
+  tasks.forEach((task) => {
+    const taskItem = document.createElement("li");
+    taskItem.className = `task${task.checked ? " task--done" : ""}`;
 
-      const progressGroup = document.createElement("div");
-      progressGroup.className = "task-menu__progress";
-      progressGroup.setAttribute(
-        "aria-label",
-        `${category.name} progress`
-      );
-      progressGroup.setAttribute("role", "group");
+    const label = document.createElement("label");
 
-      const progressCopy = document.createElement("p");
-      progressCopy.className = "task-menu__progress-count";
-      progressCopy.textContent = `${completed} of ${total} complete`;
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.disabled = true;
+    if (task.checked) checkbox.checked = true;
 
-      const progressBar = document.createElement("div");
-      progressBar.className = "task-menu__progress-bar";
-      progressBar.setAttribute("role", "progressbar");
-      progressBar.setAttribute("aria-valuemin", "0");
-      progressBar.setAttribute("aria-valuemax", String(total));
-      progressBar.setAttribute("aria-valuenow", String(completed));
+    const description = document.createElement("span");
+    description.textContent = task.description;
 
-      const progressFill = document.createElement("span");
-      progressFill.style.width = `${percentage}%`;
-      progressBar.append(progressFill);
-
-      progressGroup.append(progressCopy, progressBar);
-      header.append(headerText, progressGroup);
-
-      const taskList = document.createElement("ul");
-      taskList.className = "task-list";
-      taskList.setAttribute("role", "list");
-
-      category.tasks.forEach((task) => {
-        const taskItem = document.createElement("li");
-        taskItem.className = `task${task.checked ? " task--done" : ""}`;
-
-        const label = document.createElement("label");
-
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.disabled = true;
-        if (task.checked) checkbox.checked = true;
-
-        const description = document.createElement("span");
-        description.textContent = task.description;
-
-        label.append(checkbox, description);
-        taskItem.append(label);
-        taskList.append(taskItem);
-      });
-
-      fragment.append(header, taskList);
-    });
+    label.append(checkbox, description);
+    taskItem.append(label);
+    taskList.append(taskItem);
   });
 
-  root.append(fragment);
+  return taskList;
+};
+
+const createCategoryBlock = (sectionTitle, category, shouldIncludeSectionTitle) => {
+  const fragment = document.createDocumentFragment();
+  const completed = category.tasks.filter((task) => task.checked).length;
+  const total = category.tasks.length;
+
+  const header = document.createElement("div");
+  header.className = "task-menu__header";
+
+  const headerText = document.createElement("div");
+  if (shouldIncludeSectionTitle) {
+    const sectionHeading = document.createElement("h2");
+    sectionHeading.textContent = sectionTitle;
+    headerText.append(sectionHeading);
+  }
+  const categoryName = document.createElement("h3");
+  categoryName.textContent = category.name;
+  const summary = document.createElement("p");
+  summary.className = "task-menu__summary";
+  summary.textContent = category.summary;
+  headerText.append(categoryName, summary);
+
+  const progressGroup = createProgressGroup(category.name, completed, total);
+  header.append(headerText, progressGroup);
+
+  const taskList = createTaskList(category.tasks);
+  fragment.append(header, taskList);
+
+  return fragment;
+};
+
+const createSectionPanel = (section, sectionIndex, tabId) => {
+  const panel = document.createElement("div");
+  panel.className = "task-tabs__panel";
+  panel.id = `task-panel-${sectionIndex}`;
+  panel.setAttribute("role", "tabpanel");
+  panel.setAttribute("aria-labelledby", tabId);
+  panel.hidden = true;
+  panel.setAttribute("aria-hidden", "true");
+
+  const fragment = document.createDocumentFragment();
+  let sectionTitleAdded = false;
+  section.categories.forEach((category) => {
+    const block = createCategoryBlock(
+      section.title,
+      category,
+      !sectionTitleAdded
+    );
+    fragment.append(block);
+    sectionTitleAdded = true;
+  });
+
+  panel.append(fragment);
+  return panel;
+};
+
+const createTab = (title, sectionIndex, activateTab) => {
+  const tab = document.createElement("button");
+  tab.type = "button";
+  tab.id = `task-tab-${sectionIndex}`;
+  tab.className = "task-tabs__tab";
+  tab.setAttribute("role", "tab");
+  tab.setAttribute("aria-controls", `task-panel-${sectionIndex}`);
+  tab.textContent = title;
+  tab.tabIndex = -1;
+  tab.setAttribute("aria-selected", "false");
+  tab.addEventListener("click", () => activateTab(sectionIndex));
+  return tab;
+};
+
+const renderTaskMenu = (sections) => {
+  const tabsRoot = document.querySelector("[data-task-tabs]");
+  if (!tabsRoot) return;
+
+  const tabList = tabsRoot.querySelector("[data-task-tablist]");
+  const panelsContainer = tabsRoot.querySelector("[data-task-tabpanels]");
+  if (!tabList || !panelsContainer) return;
+
+  tabList.innerHTML = "";
+  panelsContainer.innerHTML = "";
+
+  const tabs = [];
+  const panels = [];
+  const activateTab = (selectedIndex) => {
+    tabs.forEach((tab, index) => {
+      const isActive = index === selectedIndex;
+      tab.classList.toggle("task-tabs__tab--active", isActive);
+      tab.setAttribute("aria-selected", String(isActive));
+      tab.tabIndex = isActive ? 0 : -1;
+      // panel.id = `task-panel-${sectionIndex}`;
+      const panel = panels[index];
+      if (panel) {
+        console.log(panel);
+        
+        panel.hidden = !isActive;
+        panel.setAttribute("aria-hidden", String(!isActive));
+      }
+    });
+  };
+
+  sections.forEach((section, sectionIndex) => {
+    const tab = createTab(section.title, sectionIndex, activateTab);
+    tabList.append(tab);
+    tabs.push(tab);
+
+    const panel = createSectionPanel(section, sectionIndex, tab.id);
+    panelsContainer.append(panel);
+    panels.push(panel);
+  });
+
+  if (tabs.length) activateTab(0);
 };
 
 document.addEventListener("DOMContentLoaded", () => renderTaskMenu(taskSections));

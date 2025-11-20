@@ -558,6 +558,44 @@ form .field-group p {
   }
 }
 
+  .task-tabs{
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+  }
+
+  .task-tabs__list{
+    display:flex;
+    gap:0.5rem;
+    flex-wrap:wrap;
+    border-bottom:1px solid #ddd;
+    padding-bottom:0.5rem;
+  }
+
+  .task-tabs__tab{
+    background:transparent;
+    border:1px solid #ccc;
+    border-radius:999px;
+    padding:0.5rem 1rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .task-tabs__tab--active{
+    background-color:#222;
+    color:#fff;
+    border-color:#222;
+  }
+
+  .task-tabs__panel{
+    display:block;
+  }
+
+  .task-tabs__panel[hidden]{
+    display:none;
+  }
+
   /* Utilities */
   .hidden{ display:none !important; }
   .center{ text-align:center; }
