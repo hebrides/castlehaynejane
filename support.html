@@ -64,9 +64,32 @@
             <strong class="crowdfund-card__value" data-progress-goal></strong>
           </div>
         </div>
+        <div class="crowdfund-card__actions">
+          <button type="button" class="button button-outline" data-crowdfund-open aria-haspopup="dialog">
+            See Fund Allocation
+          </button>
+        </div>
       </div>
     </div>
   </section>
+
+  <div class="crowdfund-dialog" role="dialog" aria-modal="true" aria-labelledby="fund-allocation-title" aria-describedby="fund-allocation-legend" hidden data-crowdfund-dialog>
+    <div class="crowdfund-dialog__panel">
+      <button type="button" class="crowdfund-dialog__close" data-crowdfund-close aria-label="Close dialog">&times;</button>
+      <div class="crowdfund-dialog__content">
+        <h3 id="fund-allocation-title">Fund Allocation Overview</h3>
+        <p>Every donation is carefully distributed to keep programs thriving.</p>
+        <div class="crowdfund-pie" role="img" aria-label="Pie chart showing allocation breakdown"></div>
+        <ul class="crowdfund-pie__legend" id="fund-allocation-legend">
+          <li><span class="crowdfund-pie__swatch crowdfund-pie__swatch--operations"></span> Revamp Farm House – 35%</li>
+          <li><span class="crowdfund-pie__swatch crowdfund-pie__swatch--education"></span> Revamp Guest House – 25%</li>
+          <li><span class="crowdfund-pie__swatch crowdfund-pie__swatch--infrastructure"></span> Build Campground – 15%</li>
+          <li><span class="crowdfund-pie__swatch crowdfund-pie__swatch--community"></span> Build Event Stage & Space – 15%</li>
+          <li><span class="crowdfund-pie__swatch crowdfund-pie__swatch--reserve"></span> Plant Orchard, Ornamentals, Vines and Brambles – 10%</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
   <!-- ===== Tiered Support Options ===== -->
   <section>

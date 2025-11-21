@@ -31,8 +31,42 @@ function initCrowdfundCard() {
   }
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initCrowdfundCard, { once: true });
-} else {
+function initCrowdfundDialog() {
+  const dialog = document.querySelector('[data-crowdfund-dialog]');
+  const openTrigger = document.querySelector('[data-crowdfund-open]');
+  if (!dialog || !openTrigger) return;
+
+  const closeTrigger = dialog.querySelector('[data-crowdfund-close]');
+
+  const openDialog = () => {
+    dialog.hidden = false;
+    document.body.classList.add('crowdfund-dialog-open');
+  };
+
+  const closeDialog = () => {
+    dialog.hidden = true;
+    document.body.classList.remove('crowdfund-dialog-open');
+  };
+
+  openTrigger.addEventListener('click', openDialog);
+  if (closeTrigger) closeTrigger.addEventListener('click', closeDialog);
+
+  dialog.addEventListener('click', function (event) {
+    if (event.target === dialog) closeDialog();
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && !dialog.hidden) closeDialog();
+  });
+}
+
+function initSupportPage() {
   initCrowdfundCard();
+  initCrowdfundDialog();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSupportPage, { once: true });
+} else {
+  initSupportPage();
 }
