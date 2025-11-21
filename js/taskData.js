@@ -255,3 +255,57 @@ if (typeof module !== "undefined") {
 if (typeof window !== "undefined") {
   window.taskSections = taskSections;
 }
+if (
+  typeof process !== "undefined" &&
+  process.release &&
+  process.release.name === "node" &&
+  typeof require !== "undefined" &&
+  typeof module !== "undefined" &&
+  require.main === module
+) {
+  const fs = require("fs");
+  const path = require("path");
+
+  const header = [
+    "Section Title",
+    "Category Name",
+    "Category Summary",
+    "Task Description",
+    "Checked",
+  ];
+
+  const escapeField = (value) => {
+    const asString = value == null ? "" : String(value);
+    return /[",\n\r]/.test(asString)
+      ? `"${asString.replace(/"/g, '""')}"`
+      : asString;
+  };
+
+  const rows = [header];
+  for (const section of taskSections) {
+    if (!section?.categories) continue;
+    for (const category of section.categories) {
+      if (!category?.tasks) continue;
+      for (const task of category.tasks) {
+        rows.push([
+          section.title || "",
+          category.name || "",
+          category.summary || "",
+          task.description || "",
+          Boolean(task.checked),
+        ]);
+      }
+    }
+  }
+
+  const csvContent = rows
+    .map((row) => row.map(escapeField).join(","))
+    .join("\n");
+  const outputPath =
+    typeof __dirname === "string"
+      ? path.join(__dirname, "taskSections.csv")
+      : path.join(process.cwd(), "taskSections.csv");
+
+  fs.writeFileSync(outputPath, csvContent);
+  console.log(`Generated ${rows.length - 1} tasks at ${outputPath}`);
+}

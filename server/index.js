@@ -1,17 +1,71 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
-
-const taskSections = require(path.join(__dirname, "../js/taskData"));
+const https = require("https");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
+const AIRTABLE_TABLE_ID = process.env.AIRTABLE_TABLE_ID;
+const AIRTABLE_TOKEN = process.env.AIRTABLE_TOKEN;
+
+const fetchAirtableData = () =>
+  new Promise((resolve, reject) => {
+    if (!AIRTABLE_BASE_ID || !AIRTABLE_TABLE_ID || !AIRTABLE_TOKEN) {
+      return reject(
+        new Error("Missing Airtable configuration in environment variables"),
+      );
+    }
+
+    const pathName = `/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(
+      AIRTABLE_TABLE_ID,
+    )}`;
+
+    const request = https.request(
+      {
+        hostname: "api.airtable.com",
+        path: pathName,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${AIRTABLE_TOKEN}`,
+        },
+      },
+      (response) => {
+        let raw = "";
+        response.on("data", (chunk) => {
+          raw += chunk;
+        });
+        response.on("end", () => {
+          try {
+            const payload = JSON.parse(raw || "{}");
+            resolve(payload);
+          } catch (error) {
+            reject(error);
+          }
+        });
+      },
+    );
+
+    request.on("error", reject);
+    request.end();
+  });
+
 app.use(cors());
 app.use(express.json());
 
-app.get("/api/tasks", (req, res) => {
-  res.json({ sections: taskSections });
+app.get("/", async (req, res) => {
+  res.send("<p>Uh hello? hehe.. hello!</p>")
+})
+
+app.get("/api/tasks", async (req, res) => {
+  try {
+    const airtableData = await fetchAirtableData();
+    res.json(airtableData);
+  } catch (error) {
+    console.error("Airtable fetch failed:", error);
+    res.status(500).json({ error: "Unable to fetch Airtable data" });
+  }
 });
 
 if (require.main === module) {
