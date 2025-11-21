@@ -467,6 +467,38 @@ form .field-group p {
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
+.task-menu__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem 0;
+  font: 600 2rem/1.4 var(--font-body);
+  color: #2a2a2a;
+  height: 500px;
+}
+.task-menu__loading[hidden] {
+  display: none !important;
+}
+.task-menu__spinner {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid #dde2d7;
+  border-top-color: #7abf5f;
+  animation: taskMenuSpin 0.8s linear infinite;
+}
+.task-menu__loading-text {
+  letter-spacing: 0.01em;
+}
+@keyframes taskMenuSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .task-menu__header {
   display: flex;
   flex-wrap: wrap;

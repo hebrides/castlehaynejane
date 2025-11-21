@@ -63,9 +63,21 @@
       <h3 class="kicker">Join Us in Growing Something Special</h3>
     </div>
   </section>
+
+<!-- ===== TASK LIST ==== -->
   <section class="task-menu">
     <div class="container">
-      <div class="task-tabs" data-task-tabs>
+      <div
+        class="task-menu__loading"
+        data-task-loading
+        role="status"
+        aria-live="polite"
+        hidden
+      >
+        <span class="task-menu__spinner" aria-hidden="true"></span>
+        <span class="task-menu__loading-text">Loading volunteer tasks...</span>
+      </div>
+      <div class="task-tabs" data-task-tabs data-task-api="/api/tasks">
         <div
           class="task-tabs__list"
           role="tablist"
