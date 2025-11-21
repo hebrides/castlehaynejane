@@ -41,6 +41,32 @@
       <h3 class="kicker">Join Us in Growing Something Special</h3>
     </div>
   </section>
+  <section aria-labelledby="crowdfund-progress-title">
+    <div class="container">
+      <div class="crowdfund-card" data-current="32500" data-goal="500000">
+        <div class="crowdfund-card__header">
+          <div>
+            <p class="kicker" id="crowdfund-progress-title">Community Fund Drive</p>
+            <h3 class="crowdfund-card__title">Help Us Grow</h3>
+          </div>
+          <div class="crowdfund-card__amount" data-progress-summary></div>
+        </div>
+        <div class="crowdfund-card__progress" role="progressbar" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-label="Crowdfunding progress">
+          <span></span>
+        </div>
+        <div class="crowdfund-card__labels">
+          <div>
+            <span>Raised so far</span>
+            <strong class="crowdfund-card__value" data-progress-raised></strong>
+          </div>
+          <div>
+            <span>Goal</span>
+            <strong class="crowdfund-card__value" data-progress-goal></strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ===== Tiered Support Options ===== -->
   <section>
@@ -105,5 +131,6 @@
   </section>
 
   <script src="js/custom.js"></script>
+  <script src="js/support.js"></script>
 </body>
 </html>
