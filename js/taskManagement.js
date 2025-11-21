@@ -185,6 +185,172 @@ const getTaskSections = () => {
   return [];
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+const ensureArray = (value) => {
+  if (Array.isArray(value)) return value;
+  if (value == null) return [];
+  return [value];
+};
+
+const toBoolean = (value) => {
+  if (typeof value === "boolean") return value;
+  if (typeof value === "number") return value !== 0;
+  if (typeof value === "string") {
+    const normalized = value.trim().toLowerCase();
+    if (normalized === "true") return true;
+    if (normalized === "false") return false;
+  }
+  return Boolean(value);
+};
+
+const buildTasksFromFields = (fields) => {
+  const descriptions = Array.isArray(fields?.tasks) ? fields.tasks : [];
+  const checkedStates = Array.isArray(fields?.checked) ? fields.checked : [];
+
+  return descriptions.map((description, index) => ({
+    description,
+    checked: toBoolean(checkedStates[index]),
+  }));
+};
+
+const extractSectionTitle = (fields) => {
+  const titleSource = ensureArray(fields?.title);
+  if (titleSource.length && typeof titleSource[0] === "string") {
+    return titleSource[0];
+  }
+  if (typeof fields?.title === "string") {
+    return fields.title;
+  }
+  return "Volunteer Tasks";
+};
+
+const buildSectionsFromApiPayload = (payload) => {
+  const records = Array.isArray(payload)
+    ? payload
+    : Array.isArray(payload?.records)
+      ? payload.records
+      : Array.isArray(payload?.data)
+        ? payload.data
+        : [];
+
+  if (!records.length) return [];
+
+  const sections = new Map();
+  records.forEach((record) => {
+    const fields = record?.fields || record;
+    if (!fields) return;
+
+    const sectionTitle = extractSectionTitle(fields);
+    if (!sections.has(sectionTitle)) {
+      sections.set(sectionTitle, { title: sectionTitle, categories: [] });
+    }
+
+    sections.get(sectionTitle).categories.push({
+      name: fields.category || "General",
+      summary: fields.summary || "",
+      tasks: buildTasksFromFields(fields),
+    });
+  });
+
+  return sortSections(
+    Array.from(sections.values()).map((section) => ({
+      ...section,
+      categories: sortCategories(section.categories),
+    })),
+  );
+};
+
+const romanToNumber = (value) => {
+  if (typeof value !== "string") return Number.POSITIVE_INFINITY;
+  const numerals = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
+  const chars = value.toUpperCase().split("");
+  let total = 0;
+  for (let i = 0; i < chars.length; i += 1) {
+    const current = numerals[chars[i]] || 0;
+    const next = numerals[chars[i + 1]] || 0;
+    total += current < next ? -current : current;
+  }
+  return total || Number.POSITIVE_INFINITY;
+};
+
+const sortSections = (sections) =>
+  sections.slice().sort((a, b) => {
+    const aMatch = a.title?.trim().match(/^([IVXLCDM]+)\./i);
+    const bMatch = b.title?.trim().match(/^([IVXLCDM]+)\./i);
+    const aValue = romanToNumber(aMatch?.[1]);
+    const bValue = romanToNumber(bMatch?.[1]);
+    if (aValue === bValue) return (a.title || "").localeCompare(b.title || "");
+    return aValue - bValue;
+  });
+
+const sortCategories = (categories = []) =>
+  categories.slice().sort((a, b) => {
+    const nameA = (a?.name || "").toLowerCase();
+    const nameB = (b?.name || "").toLowerCase();
+    if (nameA === nameB) return 0;
+    return nameA > nameB ? 1 : -1;
+  });
+
+const toggleTaskLoadingState = (isLoading) => {
+  const loader = document.querySelector("[data-task-loading]");
+  if (loader) {
+    loader.hidden = !isLoading;
+  }
+
+  const tabsRoot = document.querySelector("[data-task-tabs]");
+  if (tabsRoot) {
+    tabsRoot.hidden = Boolean(isLoading);
+    tabsRoot.setAttribute("aria-busy", String(Boolean(isLoading)));
+  }
+};
+
+const fetchSectionsFromApi = async (endpoint, timeout = 8000) => {
+  if (!endpoint || typeof fetch !== "function") {
+    return null;
+  }
+
+  let timer;
+  let controller;
+  if (typeof AbortController !== "undefined") {
+    controller = new AbortController();
+    timer = setTimeout(() => controller.abort(), timeout);
+  }
+
+  try {
+    const response = await fetch(endpoint, {
+      signal: controller ? controller.signal : undefined,
+      headers: { Accept: "application/json" },
+    });
+    if (!response.ok) {
+      throw new Error(`Task API responded with ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Task API fetch failed:", error);
+    return null;
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+};
+
+const hydrateTaskMenu = async () => {
+  const tabsRoot = document.querySelector("[data-task-tabs]");
+  const apiEndpoint = tabsRoot?.dataset?.taskApi?.trim();
+  if (apiEndpoint) {
+    toggleTaskLoadingState(true);
+    try {
+      const payload = await fetchSectionsFromApi(apiEndpoint);
+      const apiSections = buildSectionsFromApiPayload(payload);
+      if (apiSections.length) {
+        renderTaskMenu(apiSections);
+        return;
+      }
+    } finally {
+      toggleTaskLoadingState(false);
+    }
+  }
   renderTaskMenu(getTaskSections());
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  hydrateTaskMenu();
 });

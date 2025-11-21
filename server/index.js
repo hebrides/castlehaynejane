@@ -2,25 +2,26 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const https = require("https");
+const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
 
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
-const AIRTABLE_TABLE_ID = process.env.AIRTABLE_TABLE_ID;
+const AIRTABLE_CATEGORIES_TABLE_ID = process.env.AIRTABLE_CATEGORIES_TABLE_ID;
 const AIRTABLE_TOKEN = process.env.AIRTABLE_TOKEN;
 
-const fetchAirtableData = () =>
+const fetchTasksByCategories = () =>
   new Promise((resolve, reject) => {
-    if (!AIRTABLE_BASE_ID || !AIRTABLE_TABLE_ID || !AIRTABLE_TOKEN) {
+    if (!AIRTABLE_BASE_ID || !AIRTABLE_CATEGORIES_TABLE_ID || !AIRTABLE_TOKEN) {
       return reject(
         new Error("Missing Airtable configuration in environment variables"),
       );
     }
 
     const pathName = `/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(
-      AIRTABLE_TABLE_ID,
-    )}`;
+      AIRTABLE_CATEGORIES_TABLE_ID,
+    )}?&fields=tasks&fields=checked&fields=category&fields=summary&fields=title`;
 
     const request = https.request(
       {
@@ -53,6 +54,12 @@ const fetchAirtableData = () =>
 
 app.use(cors());
 app.use(express.json());
+const clientRoot = path.resolve(__dirname, "..");
+app.use(
+  express.static(clientRoot, {
+    extensions: ["html"],
+  }),
+);
 
 app.get("/", async (req, res) => {
   res.send("<p>Uh hello? hehe.. hello!</p>")
@@ -60,7 +67,7 @@ app.get("/", async (req, res) => {
 
 app.get("/api/tasks", async (req, res) => {
   try {
-    const airtableData = await fetchAirtableData();
+    const airtableData = await fetchTasksByCategories();
     res.json(airtableData);
   } catch (error) {
     console.error("Airtable fetch failed:", error);
