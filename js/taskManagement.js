@@ -51,10 +51,37 @@ const createTaskList = (tasks) => {
   return taskList;
 };
 
-const createCategoryBlock = (category) => {
-  const fragment = document.createDocumentFragment();
-  const completed = category.tasks.filter((task) => task.checked).length;
-  const total = category.tasks.length;
+const buildCategoryAnchorId = (sectionIndex, categoryIndex, categoryName = "category") => {
+  const safeName =
+    typeof categoryName === "string"
+      ? categoryName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
+      : "category";
+  return `task-category-${sectionIndex}-${categoryIndex}-${safeName || "category"}`;
+};
+
+const createSidebarProgress = (completed, total) => {
+  const percentage = total ? (completed / total) * 100 : 0;
+  const wrapper = document.createElement("div");
+  wrapper.className = "task-menu__sidebar-progress";
+
+  const bar = document.createElement("div");
+  bar.className = "task-menu__sidebar-progress-bar";
+  const fill = document.createElement("span");
+  fill.style.width = `${percentage}%`;
+  bar.append(fill);
+
+  const count = document.createElement("span");
+  count.className = "task-menu__sidebar-progress-count";
+  count.textContent = `${completed}/${total}`;
+
+  wrapper.append(bar, count);
+  return wrapper;
+};
+
+const createCategoryBlock = (category, anchorId) => {
+  const wrapper = document.createElement("section");
+  wrapper.className = "task-menu__category";
+  if (anchorId) wrapper.id = anchorId;
 
   const header = document.createElement("div");
   header.className = "task-menu__header";
@@ -67,13 +94,12 @@ const createCategoryBlock = (category) => {
   summary.textContent = category.summary;
   headerText.append(categoryName, summary);
 
-  const progressGroup = createProgressGroup(category.name, completed, total);
-  header.append(headerText, progressGroup);
+  header.append(headerText);
 
   const taskList = createTaskList(category.tasks);
-  fragment.append(header, taskList);
+  wrapper.append(header, taskList);
 
-  return fragment;
+  return wrapper;
 };
 
 const createSectionOverview = (section) => {
@@ -98,6 +124,39 @@ const createSectionOverview = (section) => {
   return wrapper;
 };
 
+const createSidebar = (categories, scrollToCategory) => {
+  const sidebar = document.createElement("aside");
+  sidebar.className = "task-menu__sidebar";
+
+  const title = document.createElement("h4");
+  title.textContent = "Categories";
+  sidebar.append(title);
+
+  const list = document.createElement("ul");
+  list.className = "task-menu__sidebar-list";
+
+  categories.forEach((category) => {
+    const item = document.createElement("li");
+    item.className = "task-menu__sidebar-item";
+
+    const link = document.createElement("a");
+    link.className = "task-menu__sidebar-link";
+    link.href = `#${category.id}`;
+    link.textContent = category.name;
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      scrollToCategory(category.id);
+    });
+
+    const progress = createSidebarProgress(category.completed, category.total);
+    item.append(link, progress);
+    list.append(item);
+  });
+
+  sidebar.append(list);
+  return sidebar;
+};
+
 const createSectionPanel = (section, sectionIndex, tabId) => {
   const panel = document.createElement("div");
   panel.className = "task-tabs__panel";
@@ -107,14 +166,39 @@ const createSectionPanel = (section, sectionIndex, tabId) => {
   panel.hidden = true;
   panel.setAttribute("aria-hidden", "true");
 
-  const fragment = document.createDocumentFragment();
-  const sectionOverview = createSectionOverview(section);
-  fragment.append(sectionOverview);
+  const categoriesWithMeta = section.categories.map((category, categoryIndex) => ({
+    ...category,
+    id: buildCategoryAnchorId(sectionIndex, categoryIndex, category.name),
+    completed: category.tasks.filter((task) => task.checked).length,
+    total: category.tasks.length,
+  }));
 
-  section.categories.forEach((category) => {
-    const block = createCategoryBlock(category);
-    fragment.append(block);
+  const fragment = document.createDocumentFragment();
+  const layout = document.createElement("div");
+  layout.className = "task-menu__layout";
+
+  const content = document.createElement("div");
+  content.className = "task-menu__content";
+
+  const sectionOverview = createSectionOverview(section);
+  content.append(sectionOverview);
+
+  const scrollToCategory = (categoryId) => {
+    const target = panel.querySelector(`#${categoryId}`);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  categoriesWithMeta.forEach((category) => {
+    const block = createCategoryBlock(category, category.id);
+    content.append(block);
   });
+
+  const sidebar = createSidebar(categoriesWithMeta, scrollToCategory);
+
+  layout.append(content, sidebar);
+  fragment.append(layout);
 
   panel.append(fragment);
   return panel;
