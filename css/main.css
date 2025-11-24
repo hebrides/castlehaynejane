@@ -698,10 +698,33 @@ form .field-group p {
   position:sticky;
   top:120px;
 }
+.task-menu__sidebar-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:0.75rem;
+  margin-bottom:0.85rem;
+}
 .task-menu__sidebar h4{
-  margin:0 0 0.85rem;
+  margin:0;
   letter-spacing:0.02em;
   font:700 1.05rem/1.2 var(--font-subhead);
+}
+.task-menu__to-top{
+  background:rgba(255,255,255,0.14);
+  color:#fdebd2;
+  border:1px solid rgba(255,255,255,0.24);
+  border-radius:10px;
+  padding:0.35rem 0.55rem;
+  font-weight:700;
+  cursor:pointer;
+  transition:background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+.task-menu__to-top:hover,
+.task-menu__to-top:focus-visible{
+  background:rgba(255,255,255,0.24);
+  color:#fff;
+  transform:translateY(-1px);
 }
 .task-menu__sidebar-list{
   list-style:none;
@@ -827,7 +850,12 @@ form .field-group p {
     gap:0.5rem;
     flex-wrap:wrap;
     border-bottom:1px solid #ddd;
-    padding-bottom:0.5rem;
+    padding:0.75rem 0 0.75rem;
+    position:sticky;
+    top:0;
+    z-index:5;
+    background:var(--bg-page);
+    box-shadow:0 10px 25px rgba(0,0,0,0.04);
   }
 
   .task-tabs__tab{

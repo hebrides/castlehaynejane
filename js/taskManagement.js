@@ -124,13 +124,32 @@ const createSectionOverview = (section) => {
   return wrapper;
 };
 
-const createSidebar = (categories, scrollToCategory) => {
+const createSidebar = (categories, scrollToCategory, scrollToTabs) => {
   const sidebar = document.createElement("aside");
   sidebar.className = "task-menu__sidebar";
 
+  const header = document.createElement("div");
+  header.className = "task-menu__sidebar-header";
+
   const title = document.createElement("h4");
   title.textContent = "Categories";
-  sidebar.append(title);
+
+  const toTopButton = document.createElement("button");
+  toTopButton.type = "button";
+  toTopButton.className = "task-menu__to-top";
+  toTopButton.title = "Scroll to top";
+  toTopButton.setAttribute("aria-label", "Scroll to top");
+  toTopButton.innerText = "↑";
+  toTopButton.addEventListener("click", () => {
+    if (typeof scrollToTabs === "function") {
+      scrollToTabs();
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  });
+
+  header.append(title, toTopButton);
+  sidebar.append(header);
 
   const list = document.createElement("ul");
   list.className = "task-menu__sidebar-list";
@@ -190,12 +209,21 @@ const createSectionPanel = (section, sectionIndex, tabId) => {
     }
   };
 
+  const scrollToTabs = () => {
+    const tabList = document.querySelector(".task-menu");
+    if (tabList) {
+      tabList.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   categoriesWithMeta.forEach((category) => {
     const block = createCategoryBlock(category, category.id);
     content.append(block);
   });
 
-  const sidebar = createSidebar(categoriesWithMeta, scrollToCategory);
+  const sidebar = createSidebar(categoriesWithMeta, scrollToCategory, scrollToTabs);
 
   layout.append(content, sidebar);
   fragment.append(layout);
