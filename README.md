@@ -5,7 +5,7 @@ Website &amp; e-commerce for family farm and event space.
 ## Local API Server
 
 The repository now includes a minimal Express API inside `server/` that returns the
-task menu data from `js/taskData.js`.
+task menu data from Airtable API.
 
 ```bash
 cd server

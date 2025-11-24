@@ -69,6 +69,13 @@
             See Fund Allocation
           </button>
         </div>
+        <div class="crowdfund-card__breakdown" aria-labelledby="crowdfund-breakdown-title">
+          <div class="crowdfund-card__breakdown-header">
+            <h4 id="crowdfund-breakdown-title">Fund breakdown</h4>
+            <span class="crowdfund-card__breakdown-note">Share of total goal</span>
+          </div>
+          <ul class="crowdfund-card__breakdown-list" data-crowdfund-breakdown></ul>
+        </div>
       </div>
     </div>
   </section>
@@ -79,14 +86,8 @@
       <div class="crowdfund-dialog__content">
         <h3 id="fund-allocation-title">Fund Allocation Overview</h3>
         <p>Every donation is carefully distributed to keep programs thriving.</p>
-        <div class="crowdfund-pie" role="img" aria-label="Pie chart showing allocation breakdown"></div>
-        <ul class="crowdfund-pie__legend" id="fund-allocation-legend">
-          <li><span class="crowdfund-pie__swatch crowdfund-pie__swatch--operations"></span> Revamp Farm House – 35%</li>
-          <li><span class="crowdfund-pie__swatch crowdfund-pie__swatch--education"></span> Revamp Guest House – 25%</li>
-          <li><span class="crowdfund-pie__swatch crowdfund-pie__swatch--infrastructure"></span> Build Campground – 15%</li>
-          <li><span class="crowdfund-pie__swatch crowdfund-pie__swatch--community"></span> Build Event Stage & Space – 15%</li>
-          <li><span class="crowdfund-pie__swatch crowdfund-pie__swatch--reserve"></span> Plant Orchard, Ornamentals, Vines and Brambles – 10%</li>
-        </ul>
+        <div class="crowdfund-pie" role="img" aria-label="Pie chart showing allocation breakdown" data-crowdfund-pie></div>
+        <ul class="crowdfund-pie__legend" id="fund-allocation-legend" data-crowdfund-legend></ul>
       </div>
     </div>
   </div>
