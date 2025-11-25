@@ -713,6 +713,22 @@ form .field-group p {
 .task-menu__loading-text {
   letter-spacing: 0.01em;
 }
+.task-menu__error-text {
+  display: none;
+}
+.task-menu__loading--error{
+  color:#b14d4d;
+  font-size:1.2rem;
+}
+.task-menu__loading--error .task-menu__loading-text{
+  display:none;
+}
+.task-menu__loading--error .task-menu__error-text{
+  display:inline;
+}
+.task-menu__loading--error .task-menu__spinner{
+  display:none;
+}
 @keyframes taskMenuSpin {
   from {
     transform: rotate(0deg);

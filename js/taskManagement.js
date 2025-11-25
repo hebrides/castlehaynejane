@@ -406,12 +406,27 @@ const toggleTaskLoadingState = (isLoading) => {
   const loader = document.querySelector("[data-task-loading]");
   if (loader) {
     loader.hidden = !isLoading;
+    loader.classList.remove("task-menu__loading--error");
   }
 
   const tabsRoot = document.querySelector("[data-task-tabs]");
   if (tabsRoot) {
     tabsRoot.hidden = Boolean(isLoading);
     tabsRoot.setAttribute("aria-busy", String(Boolean(isLoading)));
+  }
+};
+const showTaskError = () => {
+  const loader = document.querySelector("[data-task-loading]");
+  const tabsRoot = document.querySelector("[data-task-tabs]");
+
+  if (tabsRoot) {
+    tabsRoot.hidden = true;
+    tabsRoot.setAttribute("aria-busy", "false");
+  }
+
+  if (loader) {
+    loader.hidden = false;
+    loader.classList.add("task-menu__loading--error");
   }
 };
 
@@ -447,6 +462,7 @@ const fetchSectionsFromApi = async (endpoint, timeout = 8000) => {
 const hydrateTaskMenu = async () => {
   const tabsRoot = document.querySelector("[data-task-tabs]");
   const apiEndpoint = tabsRoot?.dataset?.taskApi?.trim();
+  let rendered = false;
   if (apiEndpoint) {
     toggleTaskLoadingState(true);
     try {
@@ -454,13 +470,23 @@ const hydrateTaskMenu = async () => {
       const apiSections = buildSectionsFromApiPayload(payload);
       if (apiSections.length) {
         renderTaskMenu(apiSections);
-        return;
+        rendered = true;
       }
     } finally {
       toggleTaskLoadingState(false);
     }
   }
-  renderTaskMenu(getTaskSections());
+  if (!rendered) {
+    const fallbackSections = getTaskSections();
+    if (fallbackSections.length) {
+      renderTaskMenu(fallbackSections);
+      rendered = true;
+    }
+  }
+
+  if (!rendered) {
+    showTaskError();
+  }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
