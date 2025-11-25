@@ -125,34 +125,55 @@ const createSectionOverview = (section) => {
 };
 
 const createSidebar = (categories, scrollToCategory, scrollToTabs) => {
-  const sidebar = document.createElement("aside");
-  sidebar.className = "task-menu__sidebar";
+  const template = document.querySelector("#task-sidebar-template");
+  const templateContent = template?.content?.firstElementChild;
+  const sidebar = templateContent
+    ? templateContent.cloneNode(true)
+    : document.createElement("aside");
+  if (!templateContent) sidebar.className = "task-menu__sidebar";
 
-  const header = document.createElement("div");
-  header.className = "task-menu__sidebar-header";
+  let header = sidebar.querySelector(".task-menu__sidebar-header");
+  let toTopButton = sidebar.querySelector(".task-menu__to-top");
+  if (!header) {
+    header = document.createElement("div");
+    header.className = "task-menu__sidebar-header";
+    const title = document.createElement("h4");
+    title.textContent = "Categories";
+    toTopButton = document.createElement("button");
+    toTopButton.type = "button";
+    toTopButton.className = "task-menu__to-top";
+    toTopButton.title = "Scroll to top";
+    toTopButton.setAttribute("aria-label", "Scroll to top");
+    toTopButton.innerText = "↑";
+    header.append(title, toTopButton);
+    sidebar.prepend(header);
+  }
 
-  const title = document.createElement("h4");
-  title.textContent = "Categories";
+  if (toTopButton) {
+    toTopButton.addEventListener("click", () => {
+      if (typeof scrollToTabs === "function") {
+        scrollToTabs();
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+  }
 
-  const toTopButton = document.createElement("button");
-  toTopButton.type = "button";
-  toTopButton.className = "task-menu__to-top";
-  toTopButton.title = "Scroll to top";
-  toTopButton.setAttribute("aria-label", "Scroll to top");
-  toTopButton.innerText = "↑";
-  toTopButton.addEventListener("click", () => {
-    if (typeof scrollToTabs === "function") {
-      scrollToTabs();
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  });
+  const list =
+    sidebar.querySelector("[data-task-sidebar-list]") ||
+    sidebar.querySelector(".task-menu__sidebar-list") ||
+    (() => {
+      const fallbackList = document.createElement("ul");
+      fallbackList.className = "task-menu__sidebar-list";
+      if (header?.parentNode) {
+        header.after(fallbackList);
+      } else {
+        sidebar.append(fallbackList);
+      }
+      return fallbackList;
+    })();
 
-  header.append(title, toTopButton);
-  sidebar.append(header);
-
-  const list = document.createElement("ul");
-  list.className = "task-menu__sidebar-list";
+  list.innerHTML = "";
 
   categories.forEach((category) => {
     const item = document.createElement("li");
@@ -285,16 +306,6 @@ const renderTaskMenu = (sections) => {
   });
 
   if (tabs.length) activateTab(0);
-};
-
-const getTaskSections = () => {
-  if (typeof window !== "undefined" && window.taskSections) {
-    return window.taskSections;
-  }
-  if (typeof globalThis !== "undefined" && globalThis.taskSections) {
-    return globalThis.taskSections;
-  }
-  return [];
 };
 
 const ensureArray = (value) => {
@@ -474,13 +485,6 @@ const hydrateTaskMenu = async () => {
       }
     } finally {
       toggleTaskLoadingState(false);
-    }
-  }
-  if (!rendered) {
-    const fallbackSections = getTaskSections();
-    if (fallbackSections.length) {
-      renderTaskMenu(fallbackSections);
-      rendered = true;
     }
   }
 
