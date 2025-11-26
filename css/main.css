@@ -399,14 +399,6 @@
     font:700 1rem/1 var(--font-subhead);
     color:#2a2a2a;
   }
-  .crowdfund-card__actions{
-    margin-top:1.5rem;
-    text-align:right;
-  }
-  .crowdfund-card__actions .button{
-    min-width:220px;
-    justify-content:center;
-  }
 .crowdfund-card__breakdown{
   margin-top:1.5rem;
   padding-top:1rem;
@@ -472,7 +464,7 @@
   transition:width 0.35s ease;
 }
 .crowdfund-card__breakdown-fill--operations{ background:#518d48; }
-.crowdfund-card__breakdown-fill--education{ background:#8ec050; }
+.crowdfund-card__breakdown-fill--clean-up{ background:#8ec050; }
 .crowdfund-card__breakdown-fill--infrastructure{ background:#ffd05a; }
 .crowdfund-card__breakdown-fill--community{ background:#f28f3b; }
 .crowdfund-card__breakdown-fill--reserve{ background:#c973ff; }
@@ -481,91 +473,6 @@
   font:600 0.9rem/1 var(--font-body);
   align-self:flex-end;
 }
-
-  .crowdfund-dialog{
-    position:fixed;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:1.5rem;
-    background:rgba(16,16,16,0.6);
-    z-index:999;
-  }
-  .crowdfund-dialog[hidden]{ display:none; }
-  .crowdfund-dialog__panel{
-    position:relative;
-    width:min(540px, 100%);
-    border-radius:28px;
-    background:#fff;
-    padding:2.25rem 2.5rem;
-    box-shadow:0 35px 75px rgba(0,0,0,0.25);
-  }
-  .crowdfund-dialog__close{
-    position:absolute;
-    top:1rem;
-    right:1rem;
-    background:transparent;
-    border:0;
-    font-size:1.75rem;
-    line-height:1;
-    cursor:pointer;
-    color:#666;
-  }
-  .crowdfund-dialog__content h3{
-    margin-top:0;
-    margin-bottom:0.5rem;
-  }
-  .crowdfund-dialog__content p{
-    margin:0 0 1rem;
-    text-align:center;
-  }
-  .crowdfund-pie{
-    width:230px;
-    height:230px;
-    border-radius:50%;
-    margin:1.5rem auto;
-    background:conic-gradient(
-      #518d48 0 35%,
-      #8ec050 35% 60%,
-      #ffd05a 60% 75%,
-      #f28f3b 75% 90%,
-      #c973ff 90% 100%
-    );
-    position:relative;
-  }
-  .crowdfund-pie::after{
-    content:"";
-    position:absolute;
-    inset:18%;
-    border-radius:50%;
-    background:#fff;
-  }
-  .crowdfund-pie__legend{
-    list-style:none;
-    margin:0;
-    padding:0;
-    display:flex;
-    flex-direction:column;
-    gap:0.65rem;
-    font:400 1rem/1.4 var(--font-body);
-  }
-  .crowdfund-pie__legend li{
-    display:flex;
-    align-items:center;
-    gap:0.75rem;
-  }
-  .crowdfund-pie__swatch{
-    width:18px;
-    height:18px;
-    border-radius:6px;
-    flex-shrink:0;
-  }
-  .crowdfund-pie__swatch--operations{ background:#518d48; }
-  .crowdfund-pie__swatch--education{ background:#8ec050; }
-  .crowdfund-pie__swatch--infrastructure{ background:#ffd05a; }
-  .crowdfund-pie__swatch--community{ background:#f28f3b; }
-  .crowdfund-pie__swatch--reserve{ background:#c973ff; }
 
   .button-outline{
     background:#fff;
@@ -990,7 +897,6 @@ form .field-group p {
   /* Utilities */
   .hidden{ display:none !important; }
   .center{ text-align:center; }
-  body.crowdfund-dialog-open{ overflow:hidden; }
   
   
   /* ===== Tablet ≤1024px ===== */
@@ -1026,9 +932,6 @@ form .field-group p {
       top:auto;
       order:-1;
     }
-    .crowdfund-card__actions{ text-align:center; }
-    .crowdfund-card__actions .button{ width:100%; min-width:0; }
-    .crowdfund-dialog__panel{ padding:1.75rem; }
   }
   
   /* ===== XS ≤479px ===== */

@@ -64,11 +64,6 @@
             <strong class="crowdfund-card__value" data-progress-goal></strong>
           </div>
         </div>
-        <div class="crowdfund-card__actions">
-          <button type="button" class="button button-outline" data-crowdfund-open aria-haspopup="dialog">
-            See Fund Allocation
-          </button>
-        </div>
         <div class="crowdfund-card__breakdown" aria-labelledby="crowdfund-breakdown-title">
           <div class="crowdfund-card__breakdown-header">
             <h4 id="crowdfund-breakdown-title">Fund breakdown</h4>
@@ -79,18 +74,6 @@
       </div>
     </div>
   </section>
-
-  <div class="crowdfund-dialog" role="dialog" aria-modal="true" aria-labelledby="fund-allocation-title" aria-describedby="fund-allocation-legend" hidden data-crowdfund-dialog>
-    <div class="crowdfund-dialog__panel">
-      <button type="button" class="crowdfund-dialog__close" data-crowdfund-close aria-label="Close dialog">&times;</button>
-      <div class="crowdfund-dialog__content">
-        <h3 id="fund-allocation-title">Fund Allocation Overview</h3>
-        <p>Every donation is carefully distributed to keep programs thriving.</p>
-        <div class="crowdfund-pie" role="img" aria-label="Pie chart showing allocation breakdown" data-crowdfund-pie></div>
-        <ul class="crowdfund-pie__legend" id="fund-allocation-legend" data-crowdfund-legend></ul>
-      </div>
-    </div>
-  </div>
 
   <!-- ===== Tiered Support Options ===== -->
   <section>
