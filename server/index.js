@@ -3,20 +3,61 @@ const express = require("express");
 const cors = require("cors");
 const https = require("https");
 const path = require("path");
+const fs = require("fs");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+
+// Cache configuration
+const CACHE_DIR = path.join(__dirname, "data");
+const TASKS_CACHE_FILE = path.join(CACHE_DIR, "tasks.json");
+const CROWDFUND_CACHE_FILE = path.join(CACHE_DIR, "crowdfund.json");
+const CACHE_TTL = 15 * 60 * 1000; // 15 minutes
+
+// Ensure cache directory exists
+if (!fs.existsSync(CACHE_DIR)) {
+  fs.mkdirSync(CACHE_DIR, { recursive: true });
+}
 
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
 const AIRTABLE_CATEGORIES_TABLE_ID = process.env.AIRTABLE_CATEGORIES_TABLE_ID;
 const AIRTABLE_CROWDFUND_TABLE_ID = process.env.AIRTABLE_CROWDFUND_TABLE_ID;
 const AIRTABLE_TOKEN = process.env.AIRTABLE_TOKEN;
 
+// Helper to read cached data
+const readCache = (filepath) => {
+  try {
+    if (fs.existsSync(filepath)) {
+      const data = fs.readFileSync(filepath, "utf8");
+      return JSON.parse(data);
+    }
+  } catch (error) {
+    console.error(`Error reading cache from ${filepath}:`, error);
+  }
+  return null;
+};
+
+// Helper to write cache
+const writeCache = (filepath, data) => {
+  try {
+    fs.writeFileSync(filepath, JSON.stringify(data, null, 2), "utf8");
+    return true;
+  } catch (error) {
+    console.error(`Error writing cache to ${filepath}:`, error);
+    return false;
+  }
+};
+
 const fetchTasksByCategories = () =>
   new Promise((resolve, reject) => {
     if (!AIRTABLE_BASE_ID || !AIRTABLE_CATEGORIES_TABLE_ID || !AIRTABLE_TOKEN) {
+      const cached = readCache(TASKS_CACHE_FILE);
+      if (cached) {
+        console.log("Using cached tasks data (no Airtable config)");
+        return resolve(cached);
+      }
       return reject(
-        new Error("Missing Airtable configuration in environment variables"),
+        new Error("Missing Airtable configuration and no cached data available"),
       );
     }
 
@@ -56,8 +97,13 @@ const fetchTasksByCategories = () =>
 const fetchCrowdfundBreakdown = () =>
   new Promise((resolve, reject) => {
     if (!AIRTABLE_BASE_ID || !AIRTABLE_CROWDFUND_TABLE_ID || !AIRTABLE_TOKEN) {
+      const cached = readCache(CROWDFUND_CACHE_FILE);
+      if (cached) {
+        console.log("Using cached crowdfund data (no Airtable config)");
+        return resolve(cached);
+      }
       return reject(
-        new Error("Missing Airtable configuration in environment variables"),
+        new Error("Missing Airtable configuration and no cached data available"),
       );
     }
 
@@ -82,6 +128,8 @@ const fetchCrowdfundBreakdown = () =>
         response.on("end", () => {
           try {
             const payload = JSON.parse(raw || "{}");
+            // Cache the successful response
+            writeCache(CROWDFUND_CACHE_FILE, payload);
             resolve(payload);
           } catch (error) {
             reject(error);
@@ -113,7 +161,13 @@ app.get("/api/tasks", async (req, res) => {
     res.json(airtableData);
   } catch (error) {
     console.error("Airtable fetch failed:", error);
-    res.status(500).json({ error: "Unable to fetch Airtable data" });
+    // Try to serve cached data as fallback
+    const cached = readCache(TASKS_CACHE_FILE);
+    if (cached) {
+      console.log("Serving cached tasks data after fetch failure");
+      return res.json(cached);
+    }
+    res.status(500).json({ error: "Unable to fetch data and no cache available" });
   }
 });
 
@@ -123,8 +177,35 @@ app.get("/api/crowdfund", async (req, res) => {
     res.json(airtableData);
   } catch (error) {
     console.error("Crowdfund fetch failed:", error);
-    res.status(500).json({ error: "Unable to fetch crowdfund data" });
+    // Try to serve cached data as fallback
+    const cached = readCache(CROWDFUND_CACHE_FILE);
+    if (cached) {
+      console.log("Serving cached crowdfund data after fetch failure");
+      return res.json(cached);
+    }
+    res.status(500).json({ error: "Unable to fetch data and no cache available" });
   }
+});
+
+// Cache refresh endpoint (useful for cron jobs)
+app.post("/api/refresh-cache", async (req, res) => {
+  const results = { tasks: null, crowdfund: null, errors: [] };
+  
+  try {
+    const tasksData = await fetchTasksByCategories();
+    results.tasks = "success";
+  } catch (error) {
+    results.errors.push(`Tasks: ${error.message}`);
+  }
+  
+  try {
+    const crowdfundData = await fetchCrowdfundBreakdown();
+    results.crowdfund = "success";
+  } catch (error) {
+    results.errors.push(`Crowdfund: ${error.message}`);
+  }
+  
+  res.json(results);
 });
 
 if (require.main === module) {

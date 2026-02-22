@@ -1,0 +1,55 @@
+name: Refresh Airtable Cache
+
+on:
+  schedule:
+    # Run every 2 hours
+    - cron: '0 */2 * * *'
+  workflow_dispatch: # Allow manual trigger
+  
+jobs:
+  refresh-cache:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: server/package-lock.json
+          
+      - name: Install dependencies
+        working-directory: ./server
+        run: npm ci
+        
+      - name: Refresh cache from Airtable
+        working-directory: ./server
+        env:
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+          AIRTABLE_CATEGORIES_TABLE_ID: ${{ secrets.AIRTABLE_CATEGORIES_TABLE_ID }}
+          AIRTABLE_CROWDFUND_TABLE_ID: ${{ secrets.AIRTABLE_CROWDFUND_TABLE_ID }}
+          AIRTABLE_TOKEN: ${{ secrets.AIRTABLE_TOKEN }}
+        run: |
+          # Start server in background
+          node index.js &
+          SERVER_PID=$!
+          
+          # Wait for server to be ready
+          sleep 5
+          
+          # Refresh cache
+          curl -X POST http://localhost:4000/api/refresh-cache
+          
+          # Stop server
+          kill $SERVER_PID
+          
+      - name: Commit and push updated cache
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add server/data/*.json
+          git diff --staged --quiet || git commit -m "chore: update Airtable cache [skip ci]"
+          git push

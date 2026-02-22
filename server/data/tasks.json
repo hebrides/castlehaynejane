@@ -1,0 +1,24 @@
+{
+  "records": [
+    {
+      "id": "recSample1",
+      "fields": {
+        "category": "Farm Work",
+        "title": "Sample Task Category",
+        "summary": "These are example tasks that appear when Airtable is not configured.",
+        "checked": false,
+        "tasks": "- Feed the chickens\n- Water the garden\n- Collect eggs"
+      }
+    },
+    {
+      "id": "recSample2",
+      "fields": {
+        "category": "Events",
+        "title": "Event Planning",
+        "summary": "Help organize upcoming farm events.",
+        "checked": false,
+        "tasks": "- Set up tables and chairs\n- Prepare welcome packets\n- Coordinate volunteers"
+      }
+    }
+  ]
+}
