@@ -40,8 +40,16 @@ jobs:
           # Wait for server to be ready
           sleep 5
           
-          # Refresh cache
-          curl -X POST http://localhost:4000/api/refresh-cache
+          # Refresh cache (fail workflow if endpoint returns an error)
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST http://localhost:4000/api/refresh-cache)
+          HTTP_BODY=$(echo "$RESPONSE" | head -n1)
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          echo "Response (HTTP $HTTP_CODE): $HTTP_BODY"
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "Cache refresh failed with HTTP $HTTP_CODE"
+            kill $SERVER_PID
+            exit 1
+          fi
           
           # Stop server
           kill $SERVER_PID

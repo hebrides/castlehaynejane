@@ -82,6 +82,8 @@ const fetchTasksByCategories = () =>
         response.on("end", () => {
           try {
             const payload = JSON.parse(raw || "{}");
+            // Cache the successful response
+            writeCache(TASKS_CACHE_FILE, payload);
             resolve(payload);
           } catch (error) {
             reject(error);
@@ -193,19 +195,26 @@ app.post("/api/refresh-cache", async (req, res) => {
   
   try {
     const tasksData = await fetchTasksByCategories();
+    writeCache(TASKS_CACHE_FILE, tasksData);
     results.tasks = "success";
+    console.log("Cache refreshed: tasks");
   } catch (error) {
     results.errors.push(`Tasks: ${error.message}`);
+    console.error("Cache refresh failed for tasks:", error.message);
   }
   
   try {
     const crowdfundData = await fetchCrowdfundBreakdown();
+    writeCache(CROWDFUND_CACHE_FILE, crowdfundData);
     results.crowdfund = "success";
+    console.log("Cache refreshed: crowdfund");
   } catch (error) {
     results.errors.push(`Crowdfund: ${error.message}`);
+    console.error("Cache refresh failed for crowdfund:", error.message);
   }
   
-  res.json(results);
+  const statusCode = results.errors.length > 0 ? 500 : 200;
+  res.status(statusCode).json(results);
 });
 
 if (require.main === module) {
