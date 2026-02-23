@@ -5,7 +5,10 @@ on:
     # Run every 2 hours
     - cron: '0 */2 * * *'
   workflow_dispatch: # Allow manual trigger
-  
+
+permissions:
+  contents: write
+
 jobs:
   refresh-cache:
     runs-on: ubuntu-latest
@@ -58,6 +61,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git add server/data/*.json
           git diff --staged --quiet || git commit -m "chore: update Airtable cache [skip ci]"
-          git push
+          git push origin HEAD
