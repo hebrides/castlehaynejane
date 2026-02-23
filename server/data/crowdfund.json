@@ -1,19 +1,48 @@
 {
   "records": [
     {
-      "id": "recFund1",
+      "id": "rec2ZACDFCWL2Wi6D",
+      "createdTime": "2025-11-25T19:57:42.000Z",
       "fields": {
-        "fundTitle": "Farm Infrastructure",
-        "description": "Building a new barn and improving irrigation systems.",
-        "goalAmount": 25000
+        "fundTitle": "Infrastructure",
+        "description": "Finish offsite guest house",
+        "goalAmount": 75000
       }
     },
     {
-      "id": "recFund2",
+      "id": "rec696gyRaA4bUhKo",
+      "createdTime": "2025-11-25T19:57:42.000Z",
       "fields": {
-        "fundTitle": "Educational Programs",
-        "description": "Developing workshops and educational materials for visitors.",
-        "goalAmount": 10000
+        "fundTitle": "Reserve",
+        "description": "Finish industrial storage building and retail space",
+        "goalAmount": 50000
+      }
+    },
+    {
+      "id": "recEpwX2OTGQZk9px",
+      "createdTime": "2025-11-25T19:57:42.000Z",
+      "fields": {
+        "fundTitle": "Clean Up",
+        "description": "Clear land; plant brambles, orchards, vines, ornamentals; build campground",
+        "goalAmount": 125000
+      }
+    },
+    {
+      "id": "recWkqQpGWyEsnhMw",
+      "createdTime": "2025-11-25T19:57:42.000Z",
+      "fields": {
+        "fundTitle": "Community",
+        "description": "Finish offsite covered farmers market",
+        "goalAmount": 75000
+      }
+    },
+    {
+      "id": "recqsHwXsoLDIYj33",
+      "createdTime": "2025-11-25T19:57:42.000Z",
+      "fields": {
+        "fundTitle": "Operations",
+        "description": "Build event spaces and stages; remodel farm house and guest house; finish pole barns and greenhouses",
+        "goalAmount": 175000
       }
     }
   ]

@@ -1,23 +1,426 @@
 {
   "records": [
     {
-      "id": "recSample1",
+      "id": "rec0dl6Yol5u79agM",
+      "createdTime": "2025-11-21T15:00:24.000Z",
       "fields": {
-        "category": "Farm Work",
-        "title": "Sample Task Category",
-        "summary": "These are example tasks that appear when Airtable is not configured.",
-        "checked": false,
-        "tasks": "- Feed the chickens\n- Water the garden\n- Collect eggs"
+        "category": "Landscaping / Exterior Work",
+        "summary": "Grounds cleanup and exterior projects",
+        "tasks": [
+          "Bush Hog Rear",
+          "Chicken Coop",
+          "Chicken Coop Fence",
+          "Clean Yard",
+          "Covered Car Port",
+          "Landscaping",
+          "Plant Orchards / Farm Row",
+          "Take down .2 acre trees",
+          "Take down Tree Limbs over house",
+          "Walkways"
+        ],
+        "title": [
+          "III. Landscaping / Exterior Work"
+        ],
+        "checked": [
+          "true",
+          "true",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false"
+        ]
       }
     },
     {
-      "id": "recSample2",
+      "id": "rec5US8yzYw9YxEb1",
+      "createdTime": "2025-11-21T14:56:00.000Z",
       "fields": {
-        "category": "Events",
-        "title": "Event Planning",
-        "summary": "Help organize upcoming farm events.",
-        "checked": false,
-        "tasks": "- Set up tables and chairs\n- Prepare welcome packets\n- Coordinate volunteers"
+        "category": "Other Bedrooms",
+        "summary": "Remaining bedroom finish work",
+        "tasks": [
+          "Check corners",
+          "Fix and trim out closets",
+          "Fix damaged windows",
+          "Repainted"
+        ],
+        "title": [
+          "I. Remodel Tasks"
+        ],
+        "checked": [
+          "false",
+          "false",
+          "false",
+          "false"
+        ]
+      }
+    },
+    {
+      "id": "recCHJCCcWuaoTemv",
+      "createdTime": "2025-11-21T14:56:34.000Z",
+      "fields": {
+        "category": "HVAC",
+        "summary": "Heating and cooling tasks",
+        "tasks": [
+          "Clean and repair / Replace HVAC",
+          "New HVAC line for Bathroom",
+          "Replace HVAC Interior Blower?"
+        ],
+        "title": [
+          "I. Remodel Tasks"
+        ],
+        "checked": [
+          "false",
+          "false",
+          "false"
+        ]
+      }
+    },
+    {
+      "id": "recPbC5DP1lTT77K2",
+      "createdTime": "2025-11-21T14:57:51.000Z",
+      "fields": {
+        "category": "Redo Septic",
+        "summary": "Septic line and tank updates",
+        "tasks": [
+          "Add new tank",
+          "Fix Septic Junction Box",
+          "Fix Septic tank (get another concrete lid)",
+          "New Drain field line"
+        ],
+        "title": [
+          "I. Remodel Tasks"
+        ],
+        "checked": [
+          "false",
+          "true",
+          "false",
+          "true"
+        ]
+      }
+    },
+    {
+      "id": "recb5VqnGJXjC6eUp",
+      "createdTime": "2025-11-21T14:59:56.000Z",
+      "fields": {
+        "category": "Furnishing Tasks",
+        "summary": "Interior items and decor to finish the home",
+        "tasks": [
+          "American Flag",
+          "Artwork",
+          "Beds",
+          "Cafe Lights",
+          "Clean and check Fans",
+          "dishwasher",
+          "dryer",
+          "Exterior furnishings / Outdoor tables and chairs / Umbrellas",
+          "fridge",
+          "Furnish Bathrooms, new shower curtain / update some fixtures",
+          "Linen / Pillows",
+          "stove",
+          "stove microwave vent",
+          "TVs",
+          "Utensils",
+          "washer"
+        ],
+        "title": [
+          "II. Furnishing Tasks"
+        ],
+        "checked": [
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "true",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "true"
+        ]
+      }
+    },
+    {
+      "id": "recbqVGyqLkqbuPDN",
+      "createdTime": "2025-11-21T14:55:33.000Z",
+      "fields": {
+        "category": "New Bedroom / Bath (4 baths)",
+        "summary": "All bedrooms and bathrooms not related to master bath",
+        "tasks": [
+          "Add bathroom electrical GFCI",
+          "Bath / showers 1",
+          "Bath / showers 2",
+          "Bath / showers 3",
+          "Bath / showers 4",
+          "Fart fan 1 / 2 / 3",
+          "Fart fan vent to exterior 1 / 2 / 3",
+          "HVAC line",
+          "Move electric switches",
+          "New Bathroom wall",
+          "New Living room wall",
+          "Plumbing",
+          "Sewer Vent to exterior",
+          "Toilet 1 / 2 / 3",
+          "Tub",
+          "Vanity 1 / 2 / 3",
+          "vanity lights 1 / 2 / 3"
+        ],
+        "title": [
+          "I. Remodel Tasks"
+        ],
+        "checked": [
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "true",
+          "false",
+          "false",
+          "true",
+          "true",
+          "true",
+          "true",
+          "false",
+          "false",
+          "true",
+          "false",
+          "false"
+        ]
+      }
+    },
+    {
+      "id": "reccGx63jdckq9rbW",
+      "createdTime": "2025-11-21T14:57:21.000Z",
+      "fields": {
+        "category": "Interior / Exterior Fixtures",
+        "summary": "Light fixtures and electrical odds and ends",
+        "tasks": [
+          "Check all electrical",
+          "Exterior Porch Lights (front, side, back)",
+          "Extra light for Camper",
+          "New Bathroom Fixtures",
+          "Replace 2 Master Bath Mirror Lights",
+          "Replace 6 top lights",
+          "Towel and toilet paper racks for each bathroom"
+        ],
+        "title": [
+          "I. Remodel Tasks"
+        ],
+        "checked": [
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "true",
+          "false"
+        ]
+      }
+    },
+    {
+      "id": "recd6LLLFDycwZMOC",
+      "createdTime": "2025-11-21T14:56:14.000Z",
+      "fields": {
+        "category": "Final Paint and Drywall",
+        "summary": "Punch list for drywall and painting",
+        "tasks": [
+          "Additions and holes Drywalled?",
+          "Clean dust from walls",
+          "Drywall Corners for closets",
+          "Final Drywall patch & skim walls, Prime Cleaned Areas",
+          "Final Paint Walls",
+          "Full Repaint check through and touch up",
+          "Last tidy up of drywall",
+          "Paint and finish walls / corners",
+          "Paint closets",
+          "Paint exterior door",
+          "Paint Kitchen and Cabinets",
+          "Paint kitchen Cabinets",
+          "Paint Master Bath Cabinets",
+          "Porches stained",
+          "Room ceilings"
+        ],
+        "title": [
+          "I. Remodel Tasks"
+        ],
+        "checked": [
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "true",
+          "false",
+          "true",
+          "true"
+        ]
+      }
+    },
+    {
+      "id": "recd9CmkpaR6MvmmK",
+      "createdTime": "2025-11-21T14:56:59.000Z",
+      "fields": {
+        "category": "Doors and Trim, Floors",
+        "summary": "Finish work for trim and flooring",
+        "tasks": [
+          "Closet trim",
+          "Crown Moulding - Use casing the way Art and I figured out",
+          "Door Casings",
+          "Door Hardware: 6 Normal butter knife handles",
+          "Fix skirting/ Underpinning",
+          "Floor Moulding",
+          "Flooring",
+          "Put doors back up"
+        ],
+        "title": [
+          "I. Remodel Tasks"
+        ],
+        "checked": [
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false"
+        ]
+      }
+    },
+    {
+      "id": "recfHbj42fGm8NXaE",
+      "createdTime": "2025-11-21T14:55:10.000Z",
+      "fields": {
+        "category": "Master Bath",
+        "summary": "Master Bath remodeling tasks",
+        "tasks": [
+          "Hardware for Bath Cabinet",
+          "Master Bath Countertops",
+          "Master Bath Faucet",
+          "Master Bath shower 541/4\" x 38\" RH",
+          "New Plumbing Master Bath Shower",
+          "New Tile Master Bath Shower",
+          "Replace Master Bath Curtain Rod",
+          "Replace Master Bath Fan (with light or fan)"
+        ],
+        "title": [
+          "I. Remodel Tasks"
+        ],
+        "checked": [
+          "false",
+          "false",
+          "false",
+          "false",
+          "true",
+          "false",
+          "false",
+          "false"
+        ]
+      }
+    },
+    {
+      "id": "reci3WJxGC9oqUJRo",
+      "createdTime": "2025-11-21T14:59:32.000Z",
+      "fields": {
+        "category": "Exterior Pump House",
+        "summary": "Pump house repairs",
+        "tasks": [
+          "Cover weird other pump pipes in yard with structure or remove",
+          "New filter",
+          "Raise Pump pressure",
+          "Raise up 3 feet",
+          "Roof",
+          "Siding"
+        ],
+        "title": [
+          "I. Remodel Tasks"
+        ],
+        "checked": [
+          "true",
+          "false",
+          "true",
+          "true",
+          "false",
+          "false"
+        ]
+      }
+    },
+    {
+      "id": "recoWhuFuskzf45AE",
+      "createdTime": "2025-11-21T14:53:58.000Z",
+      "fields": {
+        "category": "Kitchen",
+        "summary": "Kitchen related remodeling work",
+        "tasks": [
+          "Fix Cabinet Kitchen / Laundry",
+          "Fix Drawer Kitchen",
+          "Fix Ugly Trim",
+          "Install New Kitchen Sink",
+          "Kitchen Counters",
+          "Kitchen Sink Faucet",
+          "New Hardware / Hinges for All Cabinets",
+          "Stove Hood Vent"
+        ],
+        "title": [
+          "I. Remodel Tasks"
+        ],
+        "checked": [
+          "false",
+          "false",
+          "false",
+          "false",
+          "true",
+          "false",
+          "false",
+          "false"
+        ]
+      }
+    },
+    {
+      "id": "recyRUfqrrRZoouNx",
+      "createdTime": "2025-11-21T14:58:12.000Z",
+      "fields": {
+        "category": "Camper / RV",
+        "summary": "Finish the camper space",
+        "tasks": [
+          "Clean and paint camper interior",
+          "Finish Camper Hook Ups",
+          "Finish electrical",
+          "Finish Plumbing",
+          "Finish water",
+          "Fix 12 V Inverter",
+          "Fix HVAC",
+          "Stain / Seal Porch"
+        ],
+        "title": [
+          "I. Remodel Tasks"
+        ],
+        "checked": [
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false",
+          "false"
+        ]
       }
     }
   ]
