@@ -1,4 +1,5 @@
 const FALLBACK_CROWDFUND_ENDPOINT = '/api/crowdfund';
+const STATIC_CROWDFUND_JSON = 'server/data/crowdfund.json';
 
 const toNumber = (value) => {
   if (typeof value === 'number') return Number.isFinite(value) ? value : 0;
@@ -66,6 +67,18 @@ const fetchCrowdfundBreakdown = async (endpoint, timeout = 8000) => {
   }
 };
 
+// Fallback: try loading static JSON file (for GitHub Pages / static hosts)
+const fetchCrowdfundFromStaticJson = async () => {
+  try {
+    const response = await fetch(STATIC_CROWDFUND_JSON);
+    if (!response.ok) return [];
+    const payload = await response.json();
+    return normalizeCrowdfundRecords(payload);
+  } catch {
+    return [];
+  }
+};
+
 const calculateGoalTotal = (breakdown) =>
   breakdown.reduce((sum, item) => sum + toNumber(item.goalAmount), 0);
 
@@ -74,7 +87,11 @@ async function initCrowdfundCard() {
   if (!card) return;
 
   const apiEndpoint = (card.dataset.crowdfundApi || '').trim() || FALLBACK_CROWDFUND_ENDPOINT;
-  const breakdownData = await fetchCrowdfundBreakdown(apiEndpoint);
+  let breakdownData = await fetchCrowdfundBreakdown(apiEndpoint);
+  // If API failed (e.g., GitHub Pages), try static JSON file
+  if (!breakdownData.length) {
+    breakdownData = await fetchCrowdfundFromStaticJson();
+  }
   const goal = calculateGoalTotal(breakdownData) || Number(card.dataset.goal) || 0;
   const current = Number(card.dataset.current) || 0;
   const breakdownTarget = card.querySelector('[data-crowdfund-breakdown]');

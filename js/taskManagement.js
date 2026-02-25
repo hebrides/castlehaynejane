@@ -441,6 +441,8 @@ const showTaskError = () => {
   }
 };
 
+const STATIC_TASKS_JSON = 'server/data/tasks.json';
+
 const fetchSectionsFromApi = async (endpoint, timeout = 8000) => {
   if (!endpoint || typeof fetch !== "function") {
     return null;
@@ -486,6 +488,18 @@ const hydrateTaskMenu = async () => {
     } finally {
       toggleTaskLoadingState(false);
     }
+  }
+
+  // Fallback: try static JSON file (for GitHub Pages / static hosts)
+  if (!rendered) {
+    try {
+      const fallbackPayload = await fetchSectionsFromApi(STATIC_TASKS_JSON);
+      const fallbackSections = buildSectionsFromApiPayload(fallbackPayload);
+      if (fallbackSections.length) {
+        renderTaskMenu(fallbackSections);
+        rendered = true;
+      }
+    } catch { /* ignore */ }
   }
 
   if (!rendered) {
