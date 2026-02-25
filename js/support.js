@@ -60,7 +60,7 @@ const fetchCrowdfundBreakdown = async (endpoint, timeout = 8000) => {
     const payload = await response.json();
     return normalizeCrowdfundRecords(payload);
   } catch (error) {
-    console.error('Crowdfund API fetch failed:', error);
+    console.warn('[crowdfund] API fetch failed for %s — %s', endpoint, error.message || error);
     return [];
   } finally {
     if (timer) clearTimeout(timer);
@@ -69,12 +69,19 @@ const fetchCrowdfundBreakdown = async (endpoint, timeout = 8000) => {
 
 // Fallback: try loading static JSON file (for GitHub Pages / static hosts)
 const fetchCrowdfundFromStaticJson = async () => {
+  console.info('[crowdfund] API unavailable, trying static JSON fallback: %s', STATIC_CROWDFUND_JSON);
   try {
     const response = await fetch(STATIC_CROWDFUND_JSON);
-    if (!response.ok) return [];
+    if (!response.ok) {
+      console.warn('[crowdfund] Static JSON fallback returned %d', response.status);
+      return [];
+    }
     const payload = await response.json();
-    return normalizeCrowdfundRecords(payload);
-  } catch {
+    const records = normalizeCrowdfundRecords(payload);
+    console.info('[crowdfund] Loaded %d records from static JSON', records.length);
+    return records;
+  } catch (error) {
+    console.error('[crowdfund] Static JSON fallback also failed — %s', error.message || error);
     return [];
   }
 };
@@ -91,6 +98,9 @@ async function initCrowdfundCard() {
   // If API failed (e.g., GitHub Pages), try static JSON file
   if (!breakdownData.length) {
     breakdownData = await fetchCrowdfundFromStaticJson();
+  }
+  if (!breakdownData.length) {
+    console.warn('[crowdfund] No crowdfund data available from any source');
   }
   const goal = calculateGoalTotal(breakdownData) || Number(card.dataset.goal) || 0;
   const current = Number(card.dataset.current) || 0;

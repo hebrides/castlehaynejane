@@ -465,7 +465,7 @@ const fetchSectionsFromApi = async (endpoint, timeout = 8000) => {
     }
     return await response.json();
   } catch (error) {
-    console.error("Task API fetch failed:", error);
+    console.warn('[tasks] API fetch failed for %s — %s', endpoint, error.message || error);
     return null;
   } finally {
     if (timer) clearTimeout(timer);
@@ -492,17 +492,22 @@ const hydrateTaskMenu = async () => {
 
   // Fallback: try static JSON file (for GitHub Pages / static hosts)
   if (!rendered) {
+    console.info('[tasks] API unavailable, trying static JSON fallback: %s', STATIC_TASKS_JSON);
     try {
       const fallbackPayload = await fetchSectionsFromApi(STATIC_TASKS_JSON);
       const fallbackSections = buildSectionsFromApiPayload(fallbackPayload);
       if (fallbackSections.length) {
+        console.info('[tasks] Loaded %d sections from static JSON', fallbackSections.length);
         renderTaskMenu(fallbackSections);
         rendered = true;
       }
-    } catch { /* ignore */ }
+    } catch (error) {
+      console.error('[tasks] Static JSON fallback also failed — %s', error.message || error);
+    }
   }
 
   if (!rendered) {
+    console.warn('[tasks] No task data available from any source');
     showTaskError();
   }
 };
