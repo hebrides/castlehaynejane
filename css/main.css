@@ -901,7 +901,7 @@ form .field-group p {
   
   /* ===== Tablet ≤1024px ===== */
   @media (max-width:1024px){
-    .gallery-grid{ grid-template-columns:repeat(3,1fr); }
+    .gallery-grid{ column-count:3; }
     .hero { height: auto };
   }
   
@@ -912,7 +912,7 @@ form .field-group p {
     section .container.prose{ grid-template-columns:1fr; }
     #menu .menu-default{ align-items:flex-start; flex-direction:column; gap:12px; }
     .hero .content-title{ font-size:2.8rem; }
-    .gallery-grid{ grid-template-columns:repeat(2,1fr); }
+    .gallery-grid{ column-count:2; }
     .site-logo {font-size: 1.5em; }
     .bg-resp {height: 244px;}
     .support-option-header{
@@ -936,39 +936,77 @@ form .field-group p {
   
   /* ===== XS ≤479px ===== */
   @media (max-width:479px){
-    .gallery-grid{ grid-template-columns:1fr; }
+    .gallery-grid{ column-count:1; }
   }
 
   /* ===== Lightbox ===== */
   img.lightbox{
     cursor:zoom-in;
-    transition: filter .2s ease, transform .2s ease;
+    transition: opacity .15s ease, transform .2s ease;
   }
-  img.lightbox:hover{
-    filter: brightness(1.05);
-    transform: scale(1.02);
-  }
+  img.lightbox:hover{ transform:scale(1.02); opacity:.9; }
+
   .lightbox-overlay{
     position:fixed; inset:0;
     z-index:10000;
     display:flex; align-items:center; justify-content:center;
-    background:rgba(0,0,0,.85);
+    background:rgba(0,0,0,.88);
     opacity:0;
-    transition: opacity .25s ease;
+    transition: opacity .26s ease;
   }
   .lightbox-overlay.active{ opacity:1; }
+
+  .lightbox-figure{
+    display:flex; flex-direction:column; align-items:center;
+    max-width:92vw;
+    margin:0;
+  }
+
   .lightbox-img{
-    max-width:92vw; max-height:90vh;
-    border-radius:4px;
-    box-shadow:0 4px 40px rgba(0,0,0,.5);
+    max-width:92vw; max-height:82vh;
+    border-radius:3px;
+    box-shadow:0 4px 48px rgba(0,0,0,.6);
     object-fit:contain;
+    display:block;
   }
-  .lightbox-close{
-    position:absolute; top:18px; right:24px;
-    background:none; border:none;
-    color:#fff; font-size:2.4rem; line-height:1;
-    cursor:pointer; z-index:10001;
-    opacity:.8; transition:opacity .15s;
+
+  .lightbox-caption{
+    color:rgba(255,255,255,.85);
+    font-size:.875rem;
+    text-align:center;
+    padding:.6rem .5rem 0;
+    max-width:70ch;
+    margin:0;
   }
-  .lightbox-close:hover{ opacity:1; }
+
+  /* Shared base for all three chrome buttons */
+  .lightbox-close,
+  .lightbox-prev,
+  .lightbox-next{
+    position:absolute;
+    background:rgba(0,0,0,.35);
+    border:none; border-radius:50%;
+    color:#fff;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    width:48px; height:48px;
+    transition:background .15s;
+    z-index:10001;
+  }
+  .lightbox-close:hover,
+  .lightbox-prev:hover,
+  .lightbox-next:hover{ background:rgba(0,0,0,.65); }
+
+  .lightbox-close{ top:20px; right:20px; }
+  .lightbox-prev { left:20px; top:50%; transform:translateY(-50%); }
+  .lightbox-next { right:20px; top:50%; transform:translateY(-50%); }
+
+  @media (max-width:600px){
+    .lightbox-prev{ left:8px; }
+    .lightbox-next{ right:8px; }
+    .lightbox-close{ top:12px; right:12px; }
+    .lightbox-close,
+    .lightbox-prev,
+    .lightbox-next{ width:40px; height:40px; }
+  }
   
