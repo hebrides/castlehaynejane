@@ -954,7 +954,7 @@ form .field-group p {
     opacity:0;
     transition: opacity .26s ease;
   }
-  .lightbox-figure figure { overflow: auto; }
+  .lightbox-overlay figure { overflow: visible; }
   .lightbox-overlay[hidden]{ display:none; }
   .lightbox-overlay.active{ opacity:1; }
 
