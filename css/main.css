@@ -959,12 +959,12 @@ form .field-group p {
 
   .lightbox-figure{
     display:flex; flex-direction:column; align-items:center;
-    max-width:92vw;
+    width:92vw;
     margin:0;
   }
 
   .lightbox-img{
-    max-width:92vw; max-height:90vh;
+    width:92vw; height:90vh;
     border-radius:3px;
     object-fit:contain;
     display:block;
