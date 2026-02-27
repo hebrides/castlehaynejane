@@ -43,6 +43,7 @@
     overlay.setAttribute('aria-modal', 'true');
     overlay.setAttribute('aria-label', 'Image preview');
     overlay.hidden = true;
+    overlay.style.display = 'none';
 
     // Close button – SVG ×
     closeBtn = document.createElement('button');
@@ -143,6 +144,7 @@
     // Make sure any interrupted close is visually reset before re-animating
     overlay.classList.remove('active');
     overlay.hidden = false;
+    overlay.style.display = '';
     overlay.offsetHeight; // force reflow so transition fires
     overlay.classList.add('active');
 
@@ -166,6 +168,7 @@
     document.body.style.overflow = '';
     closeTimer = setTimeout(function () {
       overlay.hidden = true;
+      overlay.style.display = 'none';
       imgEl.src      = '';
       closeTimer     = null;
     }, 260);
