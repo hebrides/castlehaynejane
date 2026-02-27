@@ -954,21 +954,22 @@ form .field-group p {
     opacity:0;
     transition: opacity .26s ease;
   }
-  .lightbox-overlay > figure { overflow: visible; aspect-ratio: auto; }
+  .lightbox-overlay > figure { overflow:visible; aspect-ratio:auto; margin:0; padding:0; background:none; }
   .lightbox-overlay[hidden]{ display:none; }
   .lightbox-overlay.active{ opacity:1; }
 
   .lightbox-figure{
     display:flex; flex-direction:column; align-items:center;
-    width:92vw;
-    margin:0;
+    max-width:92vw;
+    margin:0; padding:0;
+    pointer-events:none;
   }
 
   .lightbox-img{
-    width:92vw; height:90vh;
-    border-radius:3px;
+    max-width:92vw; max-height:90vh;
     object-fit:contain;
     display:block;
+    pointer-events:auto;
   }
 
   .lightbox-caption{
