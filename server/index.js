@@ -146,7 +146,10 @@ const fetchCrowdfundBreakdown = () =>
 
 app.use(cors());
 app.use(express.json());
-const clientRoot = path.resolve(__dirname, "..");
+const clientRoot = (() => {
+  const site = path.resolve(__dirname, '../_site');
+  return fs.existsSync(site) ? site : path.resolve(__dirname, '..');
+})();
 app.use(
   express.static(clientRoot, {
     extensions: ["html"],

@@ -23,6 +23,7 @@ jobs:
           script: |
             cd ${{ secrets.VPS_DEPLOY_PATH }}
             git pull origin main
+            node scripts/build.js
             cd server
             npm install --production
             pm2 restart chjfamilyfarm || pm2 start index.js --name chjfamilyfarm

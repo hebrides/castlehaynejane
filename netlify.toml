@@ -1,7 +1,6 @@
 [build]
-  # Install server dependencies
-  command = "cd server && npm install"
-  publish = "."
+  command = "node scripts/build.js && cd server && npm install"
+  publish = "_site"
   
 # Run Express server on Netlify
 [dev]
