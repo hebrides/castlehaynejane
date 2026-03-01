@@ -86,6 +86,19 @@
     overlay.append(closeBtn, prevBtn, nextBtn, figure);
     document.body.append(overlay);
 
+    // ── Touch swipe ───────────────────────────────────────────────────────
+    var touchStartX = null;
+    overlay.addEventListener('touchstart', function (e) {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    overlay.addEventListener('touchend', function (e) {
+      if (touchStartX === null) return;
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      touchStartX = null;
+      if (Math.abs(dx) < 40) return;  // ignore taps
+      navigate(dx < 0 ? 1 : -1);
+    }, { passive: true });
+
     // ── Events ────────────────────────────────────────────────────────────
 
     // Backdrop click (only the backdrop itself – not the figure or its children)
