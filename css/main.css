@@ -113,8 +113,12 @@
   }
   .site-logo{
     color:#333;
-    font: italic 1.85em/1 var(--font-logo);
     display:inline-block;
+  }
+  .site-logo img{
+    height: 2.8em;  /* two lines of Lora italic — adjust if needed */
+    width: auto;
+    display: block;
   }
 
   /* Background Colors */
@@ -916,7 +920,7 @@ form .field-group p {
     #menu .menu-default{ align-items:flex-start; flex-direction:column; gap:12px; }
     .hero .content-title{ font-size:2.8rem; }
     .gallery-grid{ column-count:2; }
-    .site-logo {font-size: 1.5em; }
+    .site-logo img { height: 2.2em; }
     .bg-resp {height: 244px;}
     .support-option-header{
       flex-direction:column;
