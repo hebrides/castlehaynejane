@@ -920,7 +920,7 @@ form .field-group p {
     #menu .menu-default{ align-items:flex-start; flex-direction:column; gap:12px; }
     .hero .content-title{ font-size:2.8rem; }
     .gallery-grid{ column-count:2; }
-    .site-logo img { height: 2.2em; }
+    .site-logo img { height: 3em; }
     .bg-resp {height: 244px;}
     .support-option-header{
       flex-direction:column;
