@@ -150,10 +150,11 @@
   
   #menu.nav-panel{
     position: absolute;   /* take it out of flow */
-    top: 100%;            /* directly below header */
+    top: calc(100% - 2px); /* tuck 2px under header to mask shadow seam */
     left: 0; right: 0;
     width: 100%;
     background: #fff;
+    padding-top: 2px;     /* compensate for the 2px overlap */
     clip-path: inset(0 0 100% 0);
     transition: clip-path .35s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: var(--z-nav);
