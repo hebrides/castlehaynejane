@@ -96,7 +96,7 @@
     display:grid;
     grid-template-columns: 1fr 2fr 1fr;
     align-items:center;
-    padding:15px 32px 10px;
+    padding:10px 32px 10px;
   }
   /* left / center placement */
   .hamburger{ grid-column:1; justify-self:start; float:none; } /* override any float */
@@ -116,7 +116,7 @@
     display:inline-block;
   }
   .site-logo img{
-    height: 3.2em;  /* two lines of Lora italic — adjust if needed */
+    height: 4.2em;  /* two lines of Lora italic — adjust if needed */
     width: auto;
     display: block;
   }
@@ -215,18 +215,18 @@
 
   .hero .container{ padding-top:0; } 
   .hero .content-title{
-    font: 400 clamp(2rem, 9vw, 120px)/1 var(--font-hero);
+    font: 400 clamp(2rem, 7vw, 120px)/1 var(--font-hero);
     margin-top: 2.0rem;
     margin-bottom: 2.1rem;
     letter-spacing:1px;
     text-align:center;
   }
   .hero .kicker{
-    letter-spacing:7px;
+    letter-spacing:5px;
     text-transform:uppercase;
     margin:0 auto 1em; 
     text-align:center;
-    font-size: 1.1rem;
+    font-size: 1.0rem;
   }
   
   /* Hero & Section Background presets */
