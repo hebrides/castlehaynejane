@@ -956,6 +956,7 @@ form .field-group p {
     background:rgba(0,0,0,.88);
     opacity:0;
     transition: opacity .26s ease;
+    touch-action: none; /* disable double-tap zoom + native pan while open */
   }
   .lightbox-overlay > figure { overflow:visible; aspect-ratio:auto; margin:0; padding:0; background:none; }
   .lightbox-overlay[hidden]{ display:none; }

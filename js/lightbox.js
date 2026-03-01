@@ -91,6 +91,10 @@
     overlay.addEventListener('touchstart', function (e) {
       touchStartX = e.changedTouches[0].clientX;
     }, { passive: true });
+    // Prevent page scroll behind the overlay (iOS Safari ignores overflow:hidden on body)
+    overlay.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+    }, { passive: false });
     overlay.addEventListener('touchend', function (e) {
       if (touchStartX === null) return;
       var dx = e.changedTouches[0].clientX - touchStartX;
