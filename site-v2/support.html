@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Support Us – Castle Hayne Jane's Family Farm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Invest in a 26-acre legacy farm and earn real perks — from camping stays to naming rights. Choose your tier and join the Castle Hayne Jane's Family Farm community." />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="../css/fonts.css" />
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header>
+    <div class="container">
+      <button class="hamburger" aria-controls="menu" aria-expanded="false" aria-label="Open navigation menu">
+        <span aria-hidden="true"></span>
+      </button>
+      <a class="site-logo" href="index.html">
+        <img src="../media/logo.svg" alt="Castle Hayne Jane's Family Farm" />
+      </a>
+    </div>
+    <nav id="menu" class="nav-panel" aria-label="Primary navigation">
+      <ul class="menu-default">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li id="active"><a href="support.html">Support</a></li>
+        <li><a href="volunteer.html">Volunteer</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="overlay"></div>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero hero--medium">
+    <div class="hero__bg" style="background-image: url('../media/bg/sunset-farm.jpg');"></div>
+    <div class="hero__content">
+      <div class="container">
+        <div class="hero__pill">Community Fund Drive</div>
+        <h1 class="hero__title">Invest in Something Real</h1>
+        <p class="hero__sub">Help us build the farm — and earn genuine benefits in return. Every tier is a real stake in what we're building here.</p>
+        <div class="btn-row" style="justify-content:center;">
+          <a href="#tiers" class="btn btn--primary">See the Tiers</a>
+          <a href="contact.html" class="btn btn--outline-light">Ask a Question</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Crowdfund Progress ===== -->
+  <section class="section--white section--tight">
+    <div class="container">
+      <div class="crowdfund-card" data-current="32500" data-goal="500000" aria-labelledby="crowdfund-title">
+        <div class="crowdfund-card__header">
+          <div>
+            <span class="kicker" style="margin-bottom:0.4rem;">Community Fund Drive</span>
+            <h2 class="crowdfund-card__title" id="crowdfund-title">Help Us Grow</h2>
+          </div>
+          <div class="crowdfund-card__amount" data-progress-summary></div>
+        </div>
+        <div class="crowdfund-card__progress" role="progressbar" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-label="Crowdfunding progress">
+          <span></span>
+        </div>
+        <div class="crowdfund-card__labels">
+          <div>
+            <span>Raised so far</span>
+            <strong class="crowdfund-card__value" data-progress-raised></strong>
+          </div>
+          <div>
+            <span>Goal</span>
+            <strong class="crowdfund-card__value" data-progress-goal></strong>
+          </div>
+        </div>
+        <div class="crowdfund-card__breakdown" aria-labelledby="crowdfund-breakdown-title">
+          <div class="crowdfund-card__breakdown-header">
+            <h4 id="crowdfund-breakdown-title">Fund breakdown</h4>
+            <span class="crowdfund-card__breakdown-note">Share of total goal</span>
+          </div>
+          <ul class="crowdfund-card__breakdown-list" data-crowdfund-breakdown></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Why Support ===== -->
+  <section class="section--cream">
+    <div class="container">
+      <div class="prose-grid prose-grid--center">
+        <div>
+          <span class="kicker">Why It Matters</span>
+          <h2 class="h2">Every dollar builds something you can visit, celebrate on, and be proud of.</h2>
+          <p>The farm is pre-revenue — we're in the build-out phase. Supporter contributions go directly toward infrastructure: clearing land, building barns, planting orchards, and creating the event facilities that will sustain everything long-term.</p>
+          <p>In return, you're not just donating — you're buying in. Your tier determines what the farm owes you: a night's camping, a year of event passes, or a seat at the table as an advisor.</p>
+        </div>
+        <figure class="aspect-4-3">
+          <img src="../media/farm.jpg" alt="The farm in full" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Tier Cards ===== -->
+  <section id="tiers">
+    <div class="container">
+      <span class="kicker text-center">Choose Your Tier</span>
+      <h2 class="h2 max-prose--center">Dream with us.</h2>
+      <p class="max-prose--center" style="color:var(--text-muted); margin-bottom:0;">Each tier comes with real, tangible benefits. Pick the level that matches your vision — and ours.</p>
+      <div class="tier-grid">
+
+        <div class="tier-card">
+          <div class="tier-card__image">
+            <img src="../media/camper.jpg" alt="Camping at the farm" />
+          </div>
+          <div class="tier-card__body">
+            <div class="tier-card__price">$100</div>
+            <div class="tier-card__title">Happy Camper</div>
+            <p class="tier-card__desc">The best way to start. Buy in for a one-week immersive stay on the farm and become part of the story from day one.</p>
+            <div class="tier-card__action">
+              <a href="support_happy_camper.html" class="btn btn--outline">Learn More &amp; Support</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tier-card">
+          <div class="tier-card__image">
+            <img src="../media/tents.jpg" alt="Trail Blazer tent event" />
+          </div>
+          <div class="tier-card__body">
+            <div class="tier-card__price">$1,000</div>
+            <div class="tier-card__title">Trail Blazer</div>
+            <p class="tier-card__desc">Commit to a full year on the farm — free camping for 12 months plus passes to every farm event we host.</p>
+            <div class="tier-card__action">
+              <a href="support_trail_blazer.html" class="btn btn--outline">Learn More &amp; Support</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tier-card">
+          <div class="tier-card__image">
+            <img src="../media/winery.jpg" alt="Benefactor winery" />
+          </div>
+          <div class="tier-card__body">
+            <div class="tier-card__price">$10,000</div>
+            <div class="tier-card__title">Benefactor</div>
+            <p class="tier-card__desc">Lifetime camping, all-access seasonal event passes, plus one free weekend rental of the farm and facilities for your own event.</p>
+            <div class="tier-card__action">
+              <a href="support_benefactor.html" class="btn btn--outline">Learn More &amp; Support</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tier-card">
+          <div class="tier-card__image">
+            <img src="../media/dance.jpg" alt="Angel supporter celebration" />
+          </div>
+          <div class="tier-card__body">
+            <div class="tier-card__price">$100,000</div>
+            <div class="tier-card__title">Angel</div>
+            <p class="tier-card__desc">Our highest tier. Lifetime events, lifetime camping, naming rights to a barn or event space, and a seat on our board of advisors.</p>
+            <div class="tier-card__action">
+              <a href="support_angel.html" class="btn btn--primary">Learn More &amp; Support</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA to contact ===== -->
+  <section class="section--dark">
+    <div class="container text-center">
+      <span class="kicker">Questions?</span>
+      <h2 class="h2 max-prose--center">Not sure which tier is right for you? Just ask.</h2>
+      <p class="max-prose--center" style="opacity:0.85;">We're happy to walk through the details, answer questions about how funds are used, or talk through a custom arrangement.</p>
+      <div class="btn-row" style="justify-content:center; margin-top:2rem;">
+        <a href="contact.html" class="btn btn--primary">Get in Touch</a>
+        <a href="index.html" class="btn btn--outline-light">Back to Home</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__inner">
+        <nav aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="events.html">Events</a>
+          <a href="support.html">Support</a>
+          <a href="volunteer.html">Volunteer</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <p class="site-footer__copy">© 2026 Castle Hayne Jane's Family Farm · Castle Hayne, NC</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/custom.js"></script>
+  <script src="../js/support.js"></script>
+</body>
+</html>
