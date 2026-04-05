@@ -20,7 +20,13 @@
         <a href="index.html" class="nav-active">Home</a>
         <a href="about.html">About</a>
         <a href="events.html">Events</a>
-        <a href="support.html">Support</a>
+        <div class="nav-dropdown">
+          <a href="support.html">Support</a>
+          <ul class="nav-dropdown__panel">
+            <li><a href="support_utility_coin.html">Utility Coin</a></li>
+            <li><a href="support_sponsor_event.html">Sponsor An Event</a></li>
+          </ul>
+        </div>
         <a href="volunteer.html">Volunteer</a>
         <a href="contact.html">Contact</a>
       </nav>
@@ -33,7 +39,12 @@
         <li id="active"><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="events.html">Events</a></li>
-        <li><a href="support.html">Support</a></li>
+        <li><a href="support.html">Support</a>
+          <ul class="menu-sub">
+            <li><a href="support_utility_coin.html">Utility Coin</a></li>
+            <li><a href="support_sponsor_event.html">Sponsor An Event</a></li>
+          </ul>
+        </li>
         <li><a href="volunteer.html">Volunteer</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -41,34 +52,81 @@
   </header>
   <div class="overlay"></div>
 
-  <!-- ===== Hero ===== -->
-  <section class="hero">
-    <div class="hero__bg" style="background-image: url('../media/bg/field.jpg');"></div>
-    <div class="hero__content">
-      <div class="container">
-        <div class="hero__pill">2027 Inaugural Season</div>
-        <h1 class="hero__title">26 Acres on the Cape Fear River</h1>
-        <p class="hero__sub">A legacy farm becoming a sustainable agricultural enterprise, event venue, and community gathering place in Castle Hayne, NC.</p>
-        <div class="btn-row" style="justify-content:center;">
-          <a href="events.html" class="btn btn--primary">Book an Event</a>
-          <a href="support.html" class="btn btn--outline-light">Support the Farm</a>
-        </div>
-        <div class="stat-row">
-          <div class="stat">
-            <span class="stat__value">26</span>
-            <span class="stat__label">Acres</span>
+  <!-- ===== Hero Slider ===== -->
+  <section class="hero-slider" aria-label="Farm highlights">
+
+    <!-- Slide 1: The Venue -->
+    <div class="hero-slide is-active">
+      <div class="hero-slide__bg" style="background-image: url('../media/bg/events.jpg');"></div>
+      <div class="hero-slide__overlay"></div>
+      <div class="hero-slide__content">
+        <div class="container">
+          <div class="hero__pill">2027 Inaugural Season</div>
+          <h1 class="hero__title">26 Acres on the Cape Fear River</h1>
+          <p class="hero__sub">A legacy farm becoming a sustainable agricultural enterprise, event venue, and community gathering place in Castle Hayne, NC.</p>
+          <div class="btn-row" style="justify-content:center;">
+            <a href="events.html" class="btn btn--primary">Explore the Venue</a>
+            <a href="about.html" class="btn btn--outline-light">About the Farm</a>
           </div>
-          <div class="stat">
-            <span class="stat__value">3</span>
-            <span class="stat__label">Event Stages Planned</span>
-          </div>
-          <div class="stat">
-            <span class="stat__value">NE</span>
-            <span class="stat__label">Cape Fear River</span>
+          <div class="stat-row">
+            <div class="stat">
+              <span class="stat__value">26</span>
+              <span class="stat__label">Acres</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">3</span>
+              <span class="stat__label">Event Stages Planned</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">NE</span>
+              <span class="stat__label">Cape Fear River</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Slide 2: The Investment -->
+    <div class="hero-slide">
+      <div class="hero-slide__bg" style="background-image: url('../media/bg/sunset-farm.jpg');"></div>
+      <div class="hero-slide__overlay"></div>
+      <div class="hero-slide__content">
+        <div class="container">
+          <div class="hero__pill">Founding Fundraiser — Early Investors Welcome</div>
+          <h1 class="hero__title">Get In at the Ground Floor</h1>
+          <p class="hero__sub">The farm is in active build-out. Investor tiers start at $100 and carry real, lasting benefits — camping rights, event passes, naming rights, and advisory seats.</p>
+          <div class="btn-row" style="justify-content:center;">
+            <a href="support.html" class="btn btn--primary">See Investment Tiers</a>
+            <a href="support_utility_coin.html" class="btn btn--outline-light">Learn About the Coin</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: The Life -->
+    <div class="hero-slide">
+      <div class="hero-slide__bg" style="background-image: url('../media/bg/field.jpg');"></div>
+      <div class="hero-slide__overlay"></div>
+      <div class="hero-slide__content">
+        <div class="container">
+          <div class="hero__pill">Volunteer / WWOOF</div>
+          <h1 class="hero__title">Work the Land. Live the Life.</h1>
+          <p class="hero__sub">Trade your skills for a free stay on 26 riverfront acres. We match your strengths to real farm work in a community built to last.</p>
+          <div class="btn-row" style="justify-content:center;">
+            <a href="volunteer.html" class="btn btn--primary">Explore Volunteering</a>
+            <a href="volunteer.html#tasks" class="btn btn--outline-light">See Open Tasks</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation dots -->
+    <div class="hero-slider__dots" aria-label="Slide navigation">
+      <button class="hero-slider__dot is-active" aria-label="Slide 1"></button>
+      <button class="hero-slider__dot" aria-label="Slide 2"></button>
+      <button class="hero-slider__dot" aria-label="Slide 3"></button>
+    </div>
+
   </section>
 
   <!-- ===== Who Are You? Audience Routing ===== -->
@@ -210,5 +268,30 @@
 
   <script src="../js/custom.js"></script>
   <script src="../js/lightbox.js"></script>
+  <script>
+    /* Hero crossfade slider */
+    (function () {
+      var slider = document.querySelector('.hero-slider');
+      if (!slider) return;
+      var slides = slider.querySelectorAll('.hero-slide');
+      var dots   = slider.querySelectorAll('.hero-slider__dot');
+      var cur = 0, timer;
+      function goTo(n) {
+        slides[cur].classList.remove('is-active');
+        dots[cur].classList.remove('is-active');
+        cur = (n + slides.length) % slides.length;
+        slides[cur].classList.add('is-active');
+        dots[cur].classList.add('is-active');
+      }
+      function start() { timer = setInterval(function () { goTo(cur + 1); }, 5500); }
+      function stop()  { clearInterval(timer); }
+      dots.forEach(function (dot, i) {
+        dot.addEventListener('click', function () { stop(); goTo(i); start(); });
+      });
+      slider.addEventListener('mouseenter', stop);
+      slider.addEventListener('mouseleave', start);
+      start();
+    }());
+  </script>
 </body>
 </html>

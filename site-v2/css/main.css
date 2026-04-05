@@ -308,6 +308,74 @@ body.nav-open #menu.nav-panel,
 #active > a { color: var(--text); }
 #active > a { font-weight: 700; }
 
+/* Mobile sub-menu (under Support in hamburger panel) */
+.menu-sub {
+  list-style: none;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.menu-sub a {
+  font: 600 0.75rem / 1 var(--font-nav);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.4rem 1rem;
+  display: block;
+  text-decoration: none;
+  transition: color .18s ease;
+}
+.menu-sub a:hover { color: var(--text); }
+
+/* Desktop dropdown under Support */
+.nav-dropdown {
+  position: relative;
+}
+.nav-dropdown > a::after {
+  content: " ▾";
+  font-size: 0.6em;
+  vertical-align: middle;
+  opacity: 0.6;
+}
+.nav-dropdown__panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--white);
+  border: 1px solid var(--cream-border);
+  border-radius: 2px;
+  min-width: 180px;
+  padding: 0.4rem 0;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index: 200;
+}
+.nav-dropdown:hover .nav-dropdown__panel,
+.nav-dropdown:focus-within .nav-dropdown__panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.nav-dropdown__panel a {
+  display: block;
+  padding: 0.55rem 1.1rem;
+  font: 600 0.75rem / 1 var(--font-nav);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color .15s ease, background .15s ease;
+}
+.nav-dropdown__panel a:hover {
+  color: var(--text);
+  background: var(--cream);
+}
+
 body.nav-open,
 body.open { overflow: hidden; }
 
@@ -415,6 +483,76 @@ body.nav-open .hamburger::after  { transform: rotate(-45deg) translate(4px, -4px
   opacity: 0.7;
   margin-top: 0.35rem;
   display: block;
+}
+
+/* ===== Hero Slider (homepage) ===== */
+.hero-slider {
+  position: relative;
+  min-height: 82vh;
+  overflow: hidden;
+  background: var(--green);
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
+.hero-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.hero-slide__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+.hero-slide__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(27,53,22,0.52) 0%,
+    rgba(27,53,22,0.38) 40%,
+    rgba(27,53,22,0.62) 100%
+  );
+}
+.hero-slide__content {
+  position: relative;
+  z-index: 1;
+  color: var(--text-on-dark);
+  width: 100%;
+  text-align: center;
+  padding-block: 4rem;
+}
+/* Slider dots */
+.hero-slider__dots {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.625rem;
+  z-index: 10;
+}
+.hero-slider__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  border: 1.5px solid rgba(255,255,255,0.5);
+  cursor: pointer;
+  padding: 0;
+  transition: background .2s ease, transform .2s ease;
+}
+.hero-slider__dot.is-active {
+  background: #fff;
+  border-color: #fff;
+  transform: scale(1.3);
 }
 
 /* ===== Audience Routing ===== */
@@ -580,6 +718,19 @@ figure img {
   margin-bottom: 1.25rem;
 }
 .tier-card__action { margin-top: auto; }
+
+/* Investor badge label on tier cards */
+.tier-card__badge {
+  display: inline-block;
+  font: 700 0.68rem / 1 var(--font-nav);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+  background: var(--green-pale);
+  padding: 0.22rem 0.55rem;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
 
 /* ===== Tier Benefit List ===== */
 .benefit-list {
