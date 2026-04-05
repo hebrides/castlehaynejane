@@ -8,7 +8,10 @@
     --maxw: 1000px;
     --pad: 2em;
     --gap: 1rem;
-    --flow: clamp(1.5rem, 3vw, 2.25rem);
+    --flow: clamp(2rem, 4vw, 3rem);
+
+    --fs-body: 1.0625rem;    /* 17px */
+    --fs-prose: 1.125rem;    /* 18px — paragraph text */
   
     --bg-page: #f2f2f2;
     --beige: #ede3e3;
@@ -40,7 +43,7 @@
     padding:0 !important;
     color:var(--text);
     background:#fff;
-    font: var(--fs-body)/1 var(--font-body);
+    font: var(--fs-body)/1.6 var(--font-body);
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
     height:100%;
@@ -51,7 +54,7 @@
   a:hover{ color:var(--link-hover); text-decoration:none; }
   ul,li,h2, h3, div.paragraph,img{ border:0; margin:0; padding:0; }
   
-  .container{ margin:0 auto; max-width:var(--maxw); padding:2rem var(--pad); }
+  .container{ margin:0 auto; max-width:var(--maxw); padding:0 var(--pad); }
   
   /* Page */
   #content,#footer{ background:var(--bg-page); }
@@ -63,15 +66,17 @@
     font: 400 1em/1 var(--font-subhead);
     color:#2a2a2a;
     letter-spacing:4px;
+    margin-bottom: 0.75em;
   }
   h2,.content-title{
     color:#333;
     font: 500 3em/1.1 var(--font-head);
     letter-spacing:-0.025em;
+    margin-bottom: 0.5em;
   }
   .paragraph,div.paragraph,.prose p, p{
-    font: 300 19px/36px var(--font-body);
-    margin:0.5em auto 2em;
+    font: 300 var(--fs-prose)/1.9 var(--font-body);
+    margin:0.5em auto 1em;
     word-spacing:.01em;
   }
   .paragraph a{ border-bottom:1px solid #f1f1f1; }
@@ -309,7 +314,7 @@
   
   /* Images */
   figure{ 
-    margin:0 0 2rem; 
+    margin:0 0 1rem; 
     aspect-ratio: 4 / 3;
     overflow: hidden;
   }
@@ -925,10 +930,11 @@ form .field-group p {
   
   /* ===== Mobile ≤767px ===== */
   @media (max-width:767px){
-    .container{ padding:2.5em 1.25em; }
+    .container{ padding-inline: 1.25em; }
     section .container.prose{ grid-template-columns:1fr; }
     section .container.prose.sm-col-gap{ grid-template-columns:1fr 1fr; }
     #menu .menu-default{ align-items:flex-start; flex-direction:column; gap:12px; }
+    h2, .content-title{ font-size: 2rem; }
     .hero .content-title{ font-size:2.8rem; }
     .gallery-grid{ column-count:2; }
     .site-logo img { height: 3em; }
