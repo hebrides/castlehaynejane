@@ -265,8 +265,15 @@
   /* Wedding Background Parallax */
 
   .bg-image-window.parallax .bg-wedding-track {
-  background-attachment: fixed;
-}
+    background-attachment: fixed;
+  }
+
+  /* iOS Safari does not support background-attachment: fixed — fall back to scroll */
+  @supports (-webkit-touch-callout: none) {
+    .bg-image-window.parallax .bg-wedding-track {
+      background-attachment: scroll;
+    }
+  }
   
   
   /* Sections / Prose */
