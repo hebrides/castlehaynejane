@@ -924,6 +924,7 @@ form .field-group p {
   @media (max-width:767px){
     .container{ padding:2.5em 1.25em; }
     section .container.prose{ grid-template-columns:1fr; }
+    section .container.prose.sm-col-gap{ grid-template-columns:1fr 1fr; }
     #menu .menu-default{ align-items:flex-start; flex-direction:column; gap:12px; }
     .hero .content-title{ font-size:2.8rem; }
     .gallery-grid{ column-count:2; }
