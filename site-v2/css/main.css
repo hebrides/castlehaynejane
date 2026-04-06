@@ -1140,6 +1140,7 @@ img.lightbox:hover { transform: scale(1.02); opacity: .9; }
   .prose-grid--gallery { grid-template-columns: 1fr 1fr; }
   .tier-grid         { grid-template-columns: 1fr; }
   .form-grid         { grid-template-columns: 1fr; }
+  .apply-grid        { grid-template-columns: 1fr; }
   .task-menu__layout { grid-template-columns: 1fr; }
   .task-menu__sidebar { position: relative; top: auto; order: -1; }
   .site-logo img     { height: 3rem; }

@@ -171,21 +171,49 @@
   <!-- ===== Sign-Up Form ===== -->
   <section class="section--dark" id="apply">
     <div class="container">
-      <div class="max-prose--center" style="margin-bottom:2.5rem;">
-        <span class="kicker">Apply to Volunteer</span>
-        <h2 class="h2">Tell us who you are and what you're good at.</h2>
-        <p style="opacity:0.85;">Fill out the form below and we'll be in touch to discuss timing and how to make the most of your stay. You can also <a href="https://wwoofusa.org/en/host/51301" target="_blank" rel="noopener" style="color:var(--amber-light); text-decoration:underline;">apply directly through WWOOF</a>.</p>
+
+      <!-- Step labels -->
+      <div class="max-prose--center" style="margin-bottom:3rem;">
+        <span class="kicker">How to Apply</span>
+        <h2 class="h2">Two steps to get on the farm.</h2>
+        <p style="opacity:0.85;">WWOOF is how the formal arrangement works — but we want to hear from you directly first so we can match you to work you'll actually enjoy. Do both steps and we'll have everything we need.</p>
       </div>
-      <iframe
-        class="airtable-embed"
-        src="https://airtable.com/embed/appfGDM5L86lPcXys/pag6isQz2o64isgB7/form"
-        frameborder="0"
-        width="100%"
-        height="560"
-        style="background:transparent; border:1px solid rgba(255,255,255,0.2); border-radius:8px;"
-        loading="lazy"
-        title="Volunteer interest form">
-      </iframe>
+
+      <!-- Step grid -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; max-width:880px; margin:0 auto 3.5rem;" class="apply-grid">
+        <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:2px; padding:2rem;">
+          <div style="font-family:var(--font-body); font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--amber-light); margin-bottom:0.5rem;">Step 1</div>
+          <h3 style="font-family:var(--font-head); font-size:1.45rem; margin:0 0 0.75rem; color:#fff;">Send us a message</h3>
+          <p style="opacity:0.8; margin:0 0 1rem; font-size:0.95rem;">Fill out the short form below. Tell us who you are, what you're good at, and roughly when you'd want to come. We'll reply to discuss the fit.</p>
+          <p style="opacity:0.55; font-size:0.85rem; margin:0;">↓ Form is right below</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:2px; padding:2rem;">
+          <div style="font-family:var(--font-body); font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--amber-light); margin-bottom:0.5rem;">Step 2</div>
+          <h3 style="font-family:var(--font-head); font-size:1.45rem; margin:0 0 0.75rem; color:#fff;">Join WWOOF USA</h3>
+          <p style="opacity:0.8; margin:0 0 1.5rem; font-size:0.95rem;">WWOOF USA is the formal platform that covers both of us. Create a free account and send us a message through our farm profile to complete the connection.</p>
+          <a href="https://wwoofusa.org/en/host/51301" target="_blank" rel="noopener"
+             style="display:inline-block; padding:0.65rem 1.4rem; background:var(--amber); color:#fff; font-family:var(--font-body); font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; border-radius:2px; font-weight:700;">
+            Apply on WWOOF USA →
+          </a>
+        </div>
+      </div>
+
+      <!-- Step 1 form -->
+      <div style="max-width:660px; margin:0 auto;">
+        <div style="font-family:var(--font-body); font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--amber-light); margin-bottom:1rem;">Step 1 — Leave us a message</div>
+        <iframe
+          class="airtable-embed"
+          src="https://airtable.com/embed/appfGDM5L86lPcXys/pag6isQz2o64isgB7/form"
+          frameborder="0"
+          width="100%"
+          height="560"
+          style="background:transparent; border:1px solid rgba(255,255,255,0.2); border-radius:2px;"
+          loading="lazy"
+          title="Volunteer interest form">
+        </iframe>
+        <p style="text-align:center; margin-top:1.5rem; opacity:0.65; font-size:0.9rem;">After submitting, complete Step 2 — <a href="https://wwoofusa.org/en/host/51301" target="_blank" rel="noopener" style="color:var(--amber-light); text-decoration:underline;">message us on WWOOF USA</a> to make it official.</p>
+      </div>
+
     </div>
   </section>
 
@@ -220,7 +248,7 @@
 
       <div class="task-menu__layout">
         <div class="task-menu__content">
-          <div class="task-tabs" data-task-tabs data-task-api="/api/tasks">
+          <div class="task-tabs" data-task-tabs data-task-api="../server/data/tasks.json">
             <div
               class="task-tabs__list"
               role="tablist"
