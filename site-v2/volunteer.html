@@ -168,6 +168,36 @@
     </div>
   </section>
 
+  <!-- ===== Seasonal Positions ===== -->
+  <section class="section--cream" id="seasonal">
+    <div class="container">
+      <div class="prose-grid prose-grid--center">
+        <div>
+          <span class="kicker">Seasonal Positions</span>
+          <h2 class="h2">Housing-for-skills arrangements &mdash; for students, professionals, and career changers.</h2>
+          <p>Beyond the standard week-long WWOOF stay, we're looking for people who want a real season on the farm &mdash; four to twelve weeks, deep enough to complete substantial projects. If you're an agriculture or horticulture student who needs supervised field hours, a retired tradesperson who still wants to build things, or a professional in between chapters, we can put your time to genuine use.</p>
+          <p>The arrangement is the same as WWOOF &mdash; housing and meals in exchange for skilled work &mdash; but the scope is bigger. A seasonal position means we can take on a vineyard build-out, a full greenhouse operation, a campground opening, or a live event series. You leave with real work completed and a genuine reference from the farm.</p>
+          <h3 class="h3" style="margin-top:1.5rem;">Currently looking for:</h3>
+          <ul class="benefit-list" style="margin-top:0.75rem;">
+            <li>Agriculture or horticulture students seeking supervised field hours or academic credit</li>
+            <li>Retired or semi-retired carpenters, electricians, and plumbers</li>
+            <li>Experienced vineyard or orchard workers (Scuppernong grapes, figs, peaches, brambles, blueberries)</li>
+            <li>Cooks or food service professionals interested in farm kitchen or bar development</li>
+            <li>Event and live music production experience (outdoor festivals and concerts)</li>
+            <li>Permaculture, landscape design, or land management background</li>
+          </ul>
+          <div class="btn-row">
+            <a href="#apply" class="btn btn--primary">Apply for a Seasonal Position</a>
+            <a href="#tasks" class="btn btn--outline">See Open Tasks</a>
+          </div>
+        </div>
+        <figure class="aspect-4-3">
+          <img src="../media/farm.jpg" alt="Seasonal work on the farm" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== Sign-Up Form ===== -->
   <section class="section--dark" id="apply">
     <div class="container">
@@ -218,57 +248,230 @@
   </section>
 
   <!-- ===== Task Board ===== -->
-  <section class="task-menu">
+  <section class="section--cream" id="tasks">
     <div class="container">
-      <div class="task-menu__header" style="margin-bottom:2rem;">
+
+      <div class="task-board__header">
         <div>
           <span class="kicker">Open Tasks</span>
-          <h2 class="h2">What's on the board right now.</h2>
-          <p class="task-menu__summary">A live list of what needs doing, organized by category. Browse it to see where your skills might fit best.</p>
+          <h2 class="h2">What needs doing right now.</h2>
+          <p class="task-board__summary">Browse by farm area. Check the tasks that match your skills, then use the button that appears to send us a message &mdash; we'll follow up about timing and fit.</p>
         </div>
-        <div class="task-menu__progress">
-          <div class="task-menu__progress-count" data-task-progress-count></div>
-          <div class="task-menu__progress-bar" role="progressbar" aria-label="Tasks completed">
-            <span data-task-progress-bar></span>
-          </div>
+        <div>
+          <label for="task-search" class="sr-only">Search tasks</label>
+          <input type="search" id="task-search" class="task-search" placeholder="Search all tasks&hellip;" autocomplete="off" />
         </div>
       </div>
 
-      <div
-        class="task-menu__loading"
-        data-task-loading
-        role="status"
-        aria-live="polite"
-        hidden
-      >
-        <span class="task-menu__spinner" aria-hidden="true"></span>
-        <span class="task-menu__loading-text">Loading volunteer tasks…</span>
-        <span class="task-menu__error-text">Could not load tasks. Please try again later.</span>
+      <div class="task-board__tabs" role="tablist" aria-label="Farm work areas">
+        <button class="task-board__tab is-active" role="tab" aria-selected="true" aria-controls="tb-guesthouse" data-tab="tb-guesthouse">Guest House</button>
+        <button class="task-board__tab" role="tab" aria-selected="false" aria-controls="tb-ghfarm" data-tab="tb-ghfarm">Guest House Farm</button>
+        <button class="task-board__tab" role="tab" aria-selected="false" aria-controls="tb-bigfarm" data-tab="tb-bigfarm">Big Farm &amp; Events</button>
+        <button class="task-board__tab" role="tab" aria-selected="false" aria-controls="tb-coffee" data-tab="tb-coffee">Coffee House &amp; Bar</button>
       </div>
 
-      <div class="task-menu__layout">
-        <div class="task-menu__content">
-          <div class="task-tabs" data-task-tabs data-task-api="../server/data/tasks.json">
-            <div
-              class="task-tabs__list"
-              role="tablist"
-              aria-label="Task categories"
-              data-task-tablist
-            ></div>
-            <div class="task-tabs__panels" data-task-tabpanels></div>
-          </div>
+      <p class="task-no-results" id="task-no-results" hidden>No tasks match your search. Try a different keyword or <a href="contact.html">contact us directly</a>.</p>
+
+      <!-- Guest House -->
+      <div id="tb-guesthouse" class="task-board__panel is-active" role="tabpanel">
+
+        <details class="task-cat" open>
+          <summary class="task-cat__title">Kitchen <span class="task-cat__summary">&mdash; cabinetry, fixtures, and finish work</span></summary>
+          <ul class="task-list">
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Fix cabinet kitchen / laundry" /> Fix cabinet kitchen / laundry</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Fix drawer kitchen" /> Fix drawer kitchen</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Fix ugly trim" /> Fix ugly trim</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Install new kitchen sink" /> Install new kitchen sink</label></li>
+            <li class="task-item is-done"><label><input type="checkbox" class="task-cb" disabled /> Kitchen counters</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Kitchen sink faucet" /> Kitchen sink faucet</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="New hardware / hinges for all cabinets" /> New hardware / hinges for all cabinets</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Stove hood vent" /> Stove hood vent</label></li>
+          </ul>
+        </details>
+
+        <details class="task-cat">
+          <summary class="task-cat__title">Master Bath <span class="task-cat__summary">&mdash; fixtures, tile, and finish work</span></summary>
+          <ul class="task-list">
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Hardware for bath cabinet" /> Hardware for bath cabinet</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Master bath countertops" /> Master bath countertops</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Master bath faucet" /> Master bath faucet</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Master bath shower tile and fit-out" /> Master bath shower tile and fit-out</label></li>
+            <li class="task-item is-done"><label><input type="checkbox" class="task-cb" disabled /> New plumbing &mdash; master bath shower</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="New tile &mdash; master bath shower" /> New tile &mdash; master bath shower</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Replace master bath curtain rod" /> Replace master bath curtain rod</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Replace master bath fan / light" /> Replace master bath fan / light</label></li>
+          </ul>
+        </details>
+
+        <details class="task-cat">
+          <summary class="task-cat__title">Bedrooms &amp; Baths <span class="task-cat__summary">&mdash; all rooms other than master</span></summary>
+          <ul class="task-list">
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Check wall corners &mdash; bedrooms" /> Check wall corners &mdash; bedrooms</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Fix and trim out closets" /> Fix and trim out closets</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Fix damaged windows" /> Fix damaged windows</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Repaint bedrooms" /> Repaint bedrooms</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Add bathroom electrical GFCI" /> Add bathroom electrical GFCI</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Bath / shower tile and fit-out (4 rooms)" /> Bath / shower tile and fit-out (4 rooms)</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Bathroom exhaust fans &mdash; vent to exterior" /> Bathroom exhaust fans &mdash; vent to exterior</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Sewer vent to exterior" /> Sewer vent to exterior</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Toilets (3)" /> Toilets (3)</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Vanities and lights (3 bathrooms)" /> Vanities and lights (3 bathrooms)</label></li>
+          </ul>
+        </details>
+
+        <details class="task-cat">
+          <summary class="task-cat__title">HVAC <span class="task-cat__summary">&mdash; heating and cooling</span></summary>
+          <ul class="task-list">
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Clean and repair / replace HVAC system" /> Clean and repair / replace HVAC system</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="New HVAC line for bathroom" /> New HVAC line for bathroom</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Replace HVAC interior blower" /> Replace HVAC interior blower</label></li>
+          </ul>
+        </details>
+
+        <details class="task-cat">
+          <summary class="task-cat__title">Paint &amp; Drywall <span class="task-cat__summary">&mdash; final finish work throughout</span></summary>
+          <ul class="task-list">
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Drywall additions, holes, and corners" /> Drywall additions, holes, and corners</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Final drywall patch, skim, and prime" /> Final drywall patch, skim, and prime</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Final paint &mdash; all walls" /> Final paint &mdash; all walls</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Full repaint check and touch-up" /> Full repaint check and touch-up</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Paint closets" /> Paint closets</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Paint exterior door" /> Paint exterior door</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Paint master bath cabinets" /> Paint master bath cabinets</label></li>
+            <li class="task-item is-done"><label><input type="checkbox" class="task-cb" disabled /> Paint kitchen cabinets</label></li>
+            <li class="task-item is-done"><label><input type="checkbox" class="task-cb" disabled /> Porches stained</label></li>
+            <li class="task-item is-done"><label><input type="checkbox" class="task-cb" disabled /> Room ceilings</label></li>
+          </ul>
+        </details>
+
+        <details class="task-cat">
+          <summary class="task-cat__title">Doors, Trim &amp; Floors <span class="task-cat__summary">&mdash; finish carpentry throughout</span></summary>
+          <ul class="task-list">
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Closet trim" /> Closet trim</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Crown moulding" /> Crown moulding</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Door casings" /> Door casings</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Door hardware &mdash; all interior doors" /> Door hardware &mdash; all interior doors</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Fix skirting / underpinning" /> Fix skirting / underpinning</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Floor moulding" /> Floor moulding</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Flooring" /> Flooring</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Rehang all interior doors" /> Rehang all interior doors</label></li>
+          </ul>
+        </details>
+
+        <details class="task-cat">
+          <summary class="task-cat__title">Fixtures &amp; Electrical <span class="task-cat__summary">&mdash; lighting and electrical punch list</span></summary>
+          <ul class="task-list">
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Check all electrical" /> Check all electrical</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Exterior porch lights (front, side, back)" /> Exterior porch lights (front, side, back)</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="New bathroom fixtures" /> New bathroom fixtures</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Replace master bath mirror lights (2)" /> Replace master bath mirror lights (2)</label></li>
+            <li class="task-item is-done"><label><input type="checkbox" class="task-cb" disabled /> Replace 6 ceiling lights</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Towel and toilet paper racks &mdash; all bathrooms" /> Towel and toilet paper racks &mdash; all bathrooms</label></li>
+          </ul>
+        </details>
+
+        <details class="task-cat">
+          <summary class="task-cat__title">Pump House &amp; Septic <span class="task-cat__summary">&mdash; utilities and infrastructure</span></summary>
+          <ul class="task-list">
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="New well filter" /> New well filter</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Pump house roof" /> Pump house roof</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Pump house siding" /> Pump house siding</label></li>
+            <li class="task-item is-done"><label><input type="checkbox" class="task-cb" disabled /> Cover / remove odd pump pipes in yard</label></li>
+            <li class="task-item is-done"><label><input type="checkbox" class="task-cb" disabled /> Raise pump pressure</label></li>
+            <li class="task-item is-done"><label><input type="checkbox" class="task-cb" disabled /> Raise pump house 3 feet</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Add new septic tank" /> Add new septic tank</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Fix septic tank lid (concrete)" /> Fix septic tank lid (concrete)</label></li>
+            <li class="task-item is-done"><label><input type="checkbox" class="task-cb" disabled /> Fix septic junction box</label></li>
+            <li class="task-item is-done"><label><input type="checkbox" class="task-cb" disabled /> New drain field line</label></li>
+          </ul>
+        </details>
+
+        <details class="task-cat">
+          <summary class="task-cat__title">Camper / RV Space <span class="task-cat__summary">&mdash; finish the camper hook-up area</span></summary>
+          <ul class="task-list">
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Clean and paint camper interior" /> Clean and paint camper interior</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Finish camper hook-ups (water, electric, sewer)" /> Finish camper hook-ups (water, electric, sewer)</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Fix 12V inverter" /> Fix 12V inverter</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Fix camper HVAC" /> Fix camper HVAC</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Stain / seal camper porch" /> Stain / seal camper porch</label></li>
+          </ul>
+        </details>
+
+        <details class="task-cat">
+          <summary class="task-cat__title">Furnishings <span class="task-cat__summary">&mdash; interior items to complete the home</span></summary>
+          <ul class="task-list">
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Artwork and d&eacute;cor" /> Artwork and d&eacute;cor</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Beds" /> Beds</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Caf&eacute; lights" /> Caf&eacute; lights</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Clean and check ceiling fans" /> Clean and check ceiling fans</label></li>
+            <li class="task-item is-done"><label><input type="checkbox" class="task-cb" disabled /> Dishwasher</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Dryer" /> Dryer</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Exterior furnishings &mdash; outdoor tables, chairs, umbrellas" /> Exterior furnishings &mdash; outdoor tables, chairs, umbrellas</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Fridge" /> Fridge</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Furnish bathrooms &mdash; curtains and fixtures" /> Furnish bathrooms &mdash; curtains and fixtures</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Linen and pillows" /> Linen and pillows</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Stove" /> Stove</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Stove microwave vent" /> Stove microwave vent</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="TVs" /> TVs</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Utensils and kitchen supplies" /> Utensils and kitchen supplies</label></li>
+            <li class="task-item is-done"><label><input type="checkbox" class="task-cb" disabled /> Washer</label></li>
+          </ul>
+        </details>
+
+        <details class="task-cat">
+          <summary class="task-cat__title">Landscaping &amp; Exterior <span class="task-cat__summary">&mdash; grounds and outdoor structures</span></summary>
+          <ul class="task-list">
+            <li class="task-item is-done"><label><input type="checkbox" class="task-cb" disabled /> Bush hog rear area</label></li>
+            <li class="task-item is-done"><label><input type="checkbox" class="task-cb" disabled /> Chicken coop</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Chicken coop fence" /> Chicken coop fence</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Clean yard" /> Clean yard</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Covered carport" /> Covered carport</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Landscaping" /> Landscaping</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Plant orchards / farm row near guest house" /> Plant orchards / farm row near guest house</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Take down 0.2-acre tree area" /> Take down 0.2-acre tree area</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Remove tree limbs over house" /> Remove tree limbs over house</label></li>
+            <li class="task-item"><label><input type="checkbox" class="task-cb" data-task="Walkways" /> Walkways</label></li>
+          </ul>
+        </details>
+
+      </div><!-- /tb-guesthouse -->
+
+      <!-- Guest House Farm -->
+      <div id="tb-ghfarm" class="task-board__panel" role="tabpanel">
+        <div class="task-coming-soon">
+          <span class="kicker">Coming soon</span>
+          <p>We're building out the task list for the Guest House Farm area &mdash; orchard planting, raised beds, composting infrastructure, and soil preparation for the market garden. Check back soon, or reach out and ask about current needs.</p>
+          <a href="contact.html" class="btn btn--outline">Ask About Tasks</a>
         </div>
       </div>
 
-      <template id="task-sidebar-template">
-        <aside class="task-menu__sidebar">
-          <div class="task-menu__sidebar-header">
-            <h4>Categories</h4>
-            <button type="button" class="task-menu__to-top" title="Scroll to top" aria-label="Scroll to top">↑</button>
-          </div>
-          <ul class="task-menu__sidebar-list" data-sidebar-list></ul>
-        </aside>
-      </template>
+      <!-- Big Farm & Events -->
+      <div id="tb-bigfarm" class="task-board__panel" role="tabpanel">
+        <div class="task-coming-soon">
+          <span class="kicker">Coming soon</span>
+          <p>The big farm and event space task list is in progress &mdash; stage construction, RV campground clearout, Scuppernong vineyard setup, irrigation, fencing, and wayfinding signage. Reach out if you have skills in any of these areas.</p>
+          <a href="contact.html" class="btn btn--outline">Ask About Tasks</a>
+        </div>
+      </div>
+
+      <!-- Coffee House & Bar -->
+      <div id="tb-coffee" class="task-board__panel" role="tabpanel">
+        <div class="task-coming-soon">
+          <span class="kicker">Coming soon</span>
+          <p>The Coffee House, Bar &amp; Restaurant build-out is in planning. Task list will cover interior construction, bar setup, kitchen equipment, and outdoor seating. If you have food service, hospitality, or construction experience, reach out now.</p>
+          <a href="contact.html" class="btn btn--outline">Ask About Tasks</a>
+        </div>
+      </div>
+
+      <!-- Sticky CTA Bar (shown when tasks are checked) -->
+      <div id="task-cta-bar" class="task-cta-bar" hidden aria-live="polite">
+        <p><strong id="task-sel-count">0</strong> task<span id="task-sel-plural">s</span> selected</p>
+        <div class="task-cta-bar__actions">
+          <button type="button" class="btn btn--primary" id="task-contact-btn">Apply for Selected Tasks</button>
+          <button type="button" class="btn btn--outline task-cta-bar__clear">Clear All</button>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -290,6 +493,95 @@
   </footer>
 
   <script src="../js/custom.js"></script>
-  <script src="../js/taskManagement.js"></script>
+  <script>
+  (function () {
+    var board = document.getElementById('tasks');
+    if (!board) return;
+    var tabs = board.querySelectorAll('.task-board__tab');
+    var panels = board.querySelectorAll('.task-board__panel');
+    var searchInput = document.getElementById('task-search');
+    var ctaBar = document.getElementById('task-cta-bar');
+    var selCountEl = document.getElementById('task-sel-count');
+    var selPluralEl = document.getElementById('task-sel-plural');
+    var contactBtn = document.getElementById('task-contact-btn');
+    var clearBtn = board.querySelector('.task-cta-bar__clear');
+    var noResultsEl = document.getElementById('task-no-results');
+    var activeTabId = 'tb-guesthouse';
+
+    // Tab switching
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        tabs.forEach(function (t) { t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false'); });
+        panels.forEach(function (p) { p.classList.remove('is-active'); });
+        tab.classList.add('is-active');
+        tab.setAttribute('aria-selected', 'true');
+        activeTabId = tab.dataset.tab;
+        var target = document.getElementById(activeTabId);
+        if (target) target.classList.add('is-active');
+        if (searchInput) { searchInput.value = ''; filterTasks(''); }
+      });
+    });
+
+    // Search
+    function filterTasks(query) {
+      var q = (query || '').toLowerCase().trim();
+      var isSearching = q.length > 0;
+      var anyVisible = false;
+      panels.forEach(function (panel) {
+        var panelHasMatch = false;
+        panel.querySelectorAll('.task-item').forEach(function (item) {
+          var text = (item.textContent || '').toLowerCase();
+          var match = !isSearching || text.indexOf(q) !== -1;
+          item.classList.toggle('is-hidden-search', !match);
+          if (match) { panelHasMatch = true; anyVisible = true; }
+        });
+        panel.querySelectorAll('.task-cat').forEach(function (cat) {
+          var visible = cat.querySelectorAll('.task-item:not(.is-hidden-search)').length > 0;
+          cat.classList.toggle('is-hidden-search', !visible);
+        });
+        if (isSearching) {
+          panel.classList.toggle('is-active', panelHasMatch);
+        } else {
+          panel.classList.toggle('is-active', panel.id === activeTabId);
+        }
+      });
+      if (noResultsEl) noResultsEl.hidden = !isSearching || anyVisible;
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', function (e) { filterTasks(e.target.value); });
+    }
+
+    // Checkbox selection
+    function updateSelection() {
+      var checked = board.querySelectorAll('.task-cb:not(:disabled):checked');
+      var count = checked.length;
+      if (selCountEl) selCountEl.textContent = count;
+      if (selPluralEl) selPluralEl.textContent = count === 1 ? '' : 's';
+      if (ctaBar) ctaBar.hidden = count === 0;
+    }
+    board.addEventListener('change', function (e) {
+      if (e.target.classList.contains('task-cb')) updateSelection();
+    });
+
+    // Clear
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function () {
+        board.querySelectorAll('.task-cb:not(:disabled):checked').forEach(function (cb) { cb.checked = false; });
+        updateSelection();
+      });
+    }
+
+    // Contact
+    if (contactBtn) {
+      contactBtn.addEventListener('click', function () {
+        var checked = board.querySelectorAll('.task-cb:not(:disabled):checked');
+        var tasks = Array.prototype.map.call(checked, function (cb) { return cb.dataset.task; });
+        try { sessionStorage.setItem('farm_tasks', JSON.stringify(tasks)); } catch (e) {}
+        window.location.href = 'contact.html';
+      });
+    }
+  })();
+  </script>
 </body>
 </html>

@@ -27,8 +27,14 @@
             <li><a href="support_sponsor_event.html">Sponsor An Event</a></li>
           </ul>
         </div>
-        <a href="volunteer.html">Volunteer</a>
-        <a href="contact.html" class="nav-active">Contact</a>
+        <div class="nav-dropdown">
+          <a href="volunteer.html">Volunteer</a>
+          <ul class="nav-dropdown__panel">
+            <li><a href="volunteer.html#tasks">Open Tasks</a></li>
+            <li><a href="volunteer.html#seasonal">Seasonal Positions</a></li>
+            <li><a href="volunteer.html#apply">Apply via WWOOF</a></li>
+          </ul>
+        </div>
       </nav>
       <button class="hamburger" aria-controls="menu" aria-expanded="false" aria-label="Open navigation menu">
         <span aria-hidden="true"></span>
@@ -45,7 +51,13 @@
             <li><a href="support_sponsor_event.html">Sponsor An Event</a></li>
           </ul>
         </li>
-        <li><a href="volunteer.html">Volunteer</a></li>
+        <li><a href="volunteer.html">Volunteer</a>
+          <ul class="menu-sub">
+            <li><a href="volunteer.html#tasks">Open Tasks</a></li>
+            <li><a href="volunteer.html#seasonal">Seasonal Positions</a></li>
+            <li><a href="volunteer.html#apply">Apply via WWOOF</a></li>
+          </ul>
+        </li>
         <li id="active"><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
@@ -113,6 +125,7 @@
                 <option>Hosting an Event</option>
                 <option>Becoming a Supporter</option>
                 <option>Volunteering / WWOOF</option>
+                <option>Seasonal Position / Internship</option>
                 <option>General Question</option>
                 <option>Press / Media</option>
                 <option>Something Else</option>
@@ -164,5 +177,24 @@
   </footer>
 
   <script src="../js/custom.js"></script>
+  <script>
+  // Pre-fill message if redirected from task board
+  (function () {
+    try {
+      var tasks = JSON.parse(sessionStorage.getItem('farm_tasks') || 'null');
+      if (!tasks || !tasks.length) return;
+      sessionStorage.removeItem('farm_tasks');
+      var subjectEl = document.getElementById('c-subject');
+      var msgEl = document.getElementById('c-message');
+      if (subjectEl) subjectEl.value = 'Volunteering / WWOOF';
+      if (msgEl && !msgEl.value) {
+        msgEl.value = "Hi! I'm interested in helping with the following tasks:\n\n- " + tasks.join('\n- ') + "\n\nPlease let me know when and how to connect.";
+      }
+      // Scroll the form into view
+      var form = msgEl ? msgEl.closest('form') : null;
+      if (form) form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } catch (e) {}
+  })();
+  </script>
 </body>
 </html>
