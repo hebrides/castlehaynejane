@@ -4,45 +4,45 @@
       "id": "rec2ZACDFCWL2Wi6D",
       "createdTime": "2025-11-25T19:57:42.000Z",
       "fields": {
-        "fundTitle": "Infrastructure",
+        "goalAmount": 75000,
         "description": "Finish offsite guest house",
-        "goalAmount": 75000
+        "fundTitle": "Infrastructure"
       }
     },
     {
       "id": "rec696gyRaA4bUhKo",
       "createdTime": "2025-11-25T19:57:42.000Z",
       "fields": {
-        "fundTitle": "Reserve",
+        "goalAmount": 50000,
         "description": "Finish industrial storage building and retail space",
-        "goalAmount": 50000
+        "fundTitle": "Reserve"
       }
     },
     {
       "id": "recEpwX2OTGQZk9px",
       "createdTime": "2025-11-25T19:57:42.000Z",
       "fields": {
-        "fundTitle": "Clean Up",
+        "goalAmount": 125000,
         "description": "Clear land; plant brambles, orchards, vines, ornamentals; build campground",
-        "goalAmount": 125000
+        "fundTitle": "Clean Up"
       }
     },
     {
       "id": "recWkqQpGWyEsnhMw",
       "createdTime": "2025-11-25T19:57:42.000Z",
       "fields": {
-        "fundTitle": "Community",
+        "goalAmount": 75000,
         "description": "Finish offsite covered farmers market",
-        "goalAmount": 75000
+        "fundTitle": "Community"
       }
     },
     {
       "id": "recqsHwXsoLDIYj33",
       "createdTime": "2025-11-25T19:57:42.000Z",
       "fields": {
-        "fundTitle": "Operations",
+        "goalAmount": 175000,
         "description": "Build event spaces and stages; remodel farm house and guest house; finish pole barns and greenhouses",
-        "goalAmount": 175000
+        "fundTitle": "Operations"
       }
     }
   ]

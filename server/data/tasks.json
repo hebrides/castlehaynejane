@@ -16,6 +16,8 @@
           "Take down Tree Limbs over house",
           "Walkways"
         ],
+        "summary": "Grounds cleanup and exterior projects",
+        "category": "Landscaping / Exterior Work",
         "checked": [
           "true",
           "true",
@@ -28,8 +30,6 @@
           "false",
           "false"
         ],
-        "category": "Landscaping / Exterior Work",
-        "summary": "Grounds cleanup and exterior projects",
         "title": [
           "III. Landscaping / Exterior Work"
         ]
@@ -45,14 +45,14 @@
           "Fix damaged windows",
           "Repainted"
         ],
+        "summary": "Remaining bedroom finish work",
+        "category": "Other Bedrooms",
         "checked": [
           "false",
           "false",
           "false",
           "false"
         ],
-        "category": "Other Bedrooms",
-        "summary": "Remaining bedroom finish work",
         "title": [
           "I. Remodel Tasks"
         ]
@@ -67,13 +67,13 @@
           "New HVAC line for Bathroom",
           "Replace HVAC Interior Blower?"
         ],
+        "summary": "Heating and cooling tasks",
+        "category": "HVAC",
         "checked": [
           "false",
           "false",
           "false"
         ],
-        "category": "HVAC",
-        "summary": "Heating and cooling tasks",
         "title": [
           "I. Remodel Tasks"
         ]
@@ -89,14 +89,14 @@
           "Fix Septic tank (get another concrete lid)",
           "New Drain field line"
         ],
+        "summary": "Septic line and tank updates",
+        "category": "Redo Septic",
         "checked": [
           "false",
           "true",
           "false",
           "true"
         ],
-        "category": "Redo Septic",
-        "summary": "Septic line and tank updates",
         "title": [
           "I. Remodel Tasks"
         ]
@@ -124,6 +124,8 @@
           "Utensils",
           "washer"
         ],
+        "summary": "Interior items and decor to finish the home",
+        "category": "Furnishing Tasks",
         "checked": [
           "false",
           "false",
@@ -142,8 +144,6 @@
           "false",
           "true"
         ],
-        "category": "Furnishing Tasks",
-        "summary": "Interior items and decor to finish the home",
         "title": [
           "II. Furnishing Tasks"
         ]
@@ -172,6 +172,8 @@
           "Vanity 1 / 2 / 3",
           "vanity lights 1 / 2 / 3"
         ],
+        "summary": "All bedrooms and bathrooms not related to master bath",
+        "category": "New Bedroom / Bath (4 baths)",
         "checked": [
           "false",
           "false",
@@ -191,8 +193,6 @@
           "false",
           "false"
         ],
-        "category": "New Bedroom / Bath (4 baths)",
-        "summary": "All bedrooms and bathrooms not related to master bath",
         "title": [
           "I. Remodel Tasks"
         ]
@@ -211,6 +211,8 @@
           "Replace 6 top lights",
           "Towel and toilet paper racks for each bathroom"
         ],
+        "summary": "Light fixtures and electrical odds and ends",
+        "category": "Interior / Exterior Fixtures",
         "checked": [
           "false",
           "false",
@@ -220,8 +222,6 @@
           "true",
           "false"
         ],
-        "category": "Interior / Exterior Fixtures",
-        "summary": "Light fixtures and electrical odds and ends",
         "title": [
           "I. Remodel Tasks"
         ]
@@ -248,6 +248,8 @@
           "Porches stained",
           "Room ceilings"
         ],
+        "summary": "Punch list for drywall and painting",
+        "category": "Final Paint and Drywall",
         "checked": [
           "false",
           "false",
@@ -265,8 +267,6 @@
           "true",
           "true"
         ],
-        "category": "Final Paint and Drywall",
-        "summary": "Punch list for drywall and painting",
         "title": [
           "I. Remodel Tasks"
         ]
@@ -286,6 +286,8 @@
           "Flooring",
           "Put doors back up"
         ],
+        "summary": "Finish work for trim and flooring",
+        "category": "Doors and Trim, Floors",
         "checked": [
           "false",
           "false",
@@ -296,8 +298,6 @@
           "false",
           "false"
         ],
-        "category": "Doors and Trim, Floors",
-        "summary": "Finish work for trim and flooring",
         "title": [
           "I. Remodel Tasks"
         ]
@@ -317,6 +317,8 @@
           "Replace Master Bath Curtain Rod",
           "Replace Master Bath Fan (with light or fan)"
         ],
+        "summary": "Master Bath remodeling tasks",
+        "category": "Master Bath",
         "checked": [
           "false",
           "false",
@@ -327,8 +329,6 @@
           "false",
           "false"
         ],
-        "category": "Master Bath",
-        "summary": "Master Bath remodeling tasks",
         "title": [
           "I. Remodel Tasks"
         ]
@@ -346,6 +346,8 @@
           "Roof",
           "Siding"
         ],
+        "summary": "Pump house repairs",
+        "category": "Exterior Pump House",
         "checked": [
           "true",
           "false",
@@ -354,8 +356,6 @@
           "false",
           "false"
         ],
-        "category": "Exterior Pump House",
-        "summary": "Pump house repairs",
         "title": [
           "I. Remodel Tasks"
         ]
@@ -375,6 +375,8 @@
           "New Hardware / Hinges for All Cabinets",
           "Stove Hood Vent"
         ],
+        "summary": "Kitchen related remodeling work",
+        "category": "Kitchen",
         "checked": [
           "false",
           "false",
@@ -385,8 +387,6 @@
           "false",
           "false"
         ],
-        "category": "Kitchen",
-        "summary": "Kitchen related remodeling work",
         "title": [
           "I. Remodel Tasks"
         ]
@@ -406,6 +406,8 @@
           "Fix HVAC",
           "Stain / Seal Porch"
         ],
+        "summary": "Finish the camper space",
+        "category": "Camper / RV",
         "checked": [
           "false",
           "false",
@@ -416,8 +418,6 @@
           "false",
           "false"
         ],
-        "category": "Camper / RV",
-        "summary": "Finish the camper space",
         "title": [
           "I. Remodel Tasks"
         ]
