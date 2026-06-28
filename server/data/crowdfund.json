@@ -1,49 +1,8 @@
 {
-  "records": [
+  "errors": [
     {
-      "id": "rec2ZACDFCWL2Wi6D",
-      "createdTime": "2025-11-25T19:57:42.000Z",
-      "fields": {
-        "goalAmount": 75000,
-        "description": "Finish offsite guest house",
-        "fundTitle": "Infrastructure"
-      }
-    },
-    {
-      "id": "rec696gyRaA4bUhKo",
-      "createdTime": "2025-11-25T19:57:42.000Z",
-      "fields": {
-        "goalAmount": 50000,
-        "description": "Finish industrial storage building and retail space",
-        "fundTitle": "Reserve"
-      }
-    },
-    {
-      "id": "recEpwX2OTGQZk9px",
-      "createdTime": "2025-11-25T19:57:42.000Z",
-      "fields": {
-        "goalAmount": 125000,
-        "description": "Clear land; plant brambles, orchards, vines, ornamentals; build campground",
-        "fundTitle": "Clean Up"
-      }
-    },
-    {
-      "id": "recWkqQpGWyEsnhMw",
-      "createdTime": "2025-11-25T19:57:42.000Z",
-      "fields": {
-        "goalAmount": 75000,
-        "description": "Finish offsite covered farmers market",
-        "fundTitle": "Community"
-      }
-    },
-    {
-      "id": "recqsHwXsoLDIYj33",
-      "createdTime": "2025-11-25T19:57:42.000Z",
-      "fields": {
-        "goalAmount": 175000,
-        "description": "Build event spaces and stages; remodel farm house and guest house; finish pole barns and greenhouses",
-        "fundTitle": "Operations"
-      }
+      "error": "PUBLIC_API_BILLING_LIMIT_EXCEEDED",
+      "message": "API billing plan limit exceeded. You've reached the maximum number of requests allowed for this month. Upgrade for higher limits here: https://airtable.com/pricing?ref=bp.pale, or wait until usage resets. You can see your current usage in your workspace settings page."
     }
   ]
 }
